@@ -1,0 +1,133 @@
+.news-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+.devider {
+  height: 1px;
+  width: 100px;
+  background-color: var(--bs-primary);
+  margin-bottom: 2rem;
+}
+
+.news-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.news-item {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.news-item:hover {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+.news-item-date {
+  color: var(--bs-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.news-item-title {
+  color: var(--bs-primary);
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.news-item-summary {
+  color: #333;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.news-item-more {
+  background: none;
+  border: none;
+  color: var(--bs-primary);
+  padding: 0;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: opacity 0.3s ease;
+}
+
+.news-item-more:hover {
+  opacity: 0.8;
+}
+
+.news-back-link button {
+  color: var(--bs-primary);
+  font-weight: 500;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+.news-back-link button:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.news-details {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+}
+
+.news-title {
+  color: var(--bs-primary);
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+
+.news-date {
+  color: var(--bs-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+}
+
+.news-content {
+  line-height: 1.8;
+  color: #333;
+}
+
+.news-content p {
+  margin-bottom: 20px;
+}
+
+.btn-b-primary {
+  background-color: transparent;
+  border: 2px solid var(--bs-primary);
+  border-radius: 4px;
+  color: var(--bs-primary);
+  transition: all 0.3s ease;
+  padding: 0.6em 2em;
+}
+
+.btn-b-primary:hover, .btn-b-primary:focus {
+  background-color: var(--bs-primary);
+  color: #fff;
+}
+
+@media (max-width: 767.98px) {
+  .news-item {
+    padding: 20px;
+  }
+
+  .news-details {
+    padding: 20px;
+  }
+
+  .news-title {
+    font-size: 1.5rem;
+  }
+}

@@ -1,0 +1,121 @@
+.companies-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+.devider {
+  height: 1px;
+  width: 100px;
+  background-color: var(--bs-primary);
+  margin-bottom: 2rem;
+}
+
+.providers-list {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.providers-list .list-group-item {
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  padding: 15px 20px;
+  transition: all 0.3s ease;
+}
+
+.providers-list .list-group-item:last-child {
+  border-bottom: none;
+}
+
+.providers-list .list-group-item:hover {
+  background-color: #f5f5f5;
+}
+
+.providers-list .list-group-item.active {
+  background-color: var(--bs-primary);
+  color: white;
+  border-color: var(--bs-primary);
+}
+
+.providers-list .list-group-item.active h3,
+.providers-list .list-group-item.active p {
+  color: white;
+}
+
+.provider-details .card,
+.provider-placeholder .card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  min-height: 300px;
+}
+
+.provider-details .card-header {
+  background-color: var(--bs-primary);
+  color: white;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1.5rem;
+}
+
+.provider-details .card-header h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.provider-details .card-body {
+  padding: 1.5rem;
+}
+
+.list-regions {
+  columns: 2;
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.list-regions li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 20px;
+}
+
+.list-regions li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--bs-primary);
+  font-size: 1.2em;
+}
+
+.provider-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-f-primary {
+  background-color: var(--bs-primary);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 1;
+  transition: all 0.3s ease;
+  padding: 0.6em 2em;
+}
+
+.btn-f-primary:hover, .btn-f-primary:focus {
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 0.7;
+}
+
+@media (max-width: 991.98px) {
+  .providers-list {
+    margin-bottom: 30px;
+  }
+
+  .list-regions {
+    columns: 1;
+  }
+}

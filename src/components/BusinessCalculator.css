@@ -1,0 +1,74 @@
+.calculator-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.calculator-card {
+  border: none;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.calculator-header {
+  background-color: var(--bs-primary);
+  color: white;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1.5rem;
+}
+
+.calculator-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.form-label {
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  color: var(--bs-primary);
+}
+
+.form-select,
+.form-control {
+  border-radius: 6px;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+}
+
+.form-select:focus,
+.form-control:focus {
+  border-color: var(--bs-primary);
+  box-shadow: 0 0 0 0.2rem rgba(30, 30, 30, 0.25);
+}
+
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #000;
+  border-color: #000;
+}
+
+.result-cost {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bs-primary);
+  color: white;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.cost-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+}

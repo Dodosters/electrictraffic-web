@@ -1,0 +1,54 @@
+.hourly-uploader {
+  margin-bottom: 2rem;
+}
+
+.hourly-uploader .card {
+  border: none;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.hourly-uploader .card-header {
+  background-color: var(--bs-primary);
+  color: white;
+  border-radius: 10px 10px 0 0 !important;
+  padding: 1rem 1.5rem;
+}
+
+.hourly-uploader .card-header h3 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.hourly-uploader .card-body {
+  padding: 1.5rem;
+}
+
+.hourly-uploader .form-label {
+  font-weight: 500;
+  color: var(--bs-primary);
+}
+
+.hourly-uploader .form-text {
+  color: var(--bs-secondary);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+.hourly-uploader .btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+  padding: 0.6rem 2rem;
+  font-weight: 500;
+}
+
+.hourly-uploader .btn-primary:hover {
+  background-color: #000;
+  border-color: #000;
+}
+
+.hourly-uploader .btn-primary:disabled {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}

@@ -1,0 +1,106 @@
+.navbar-glass {
+  position: relative;
+  z-index: 10;
+}
+
+.navbar-glass > * {
+  z-index: 11;
+}
+
+.main-nav {
+  height: 58px;
+  position: absolute;
+  z-index: 1;
+}
+
+.nav-item a.nav-link {
+  border-radius: 4px;
+  font-family: Roboto, sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 140%;
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.nav-item a.nav-link:hover {
+  background-color: var(--bs-gray-light);
+  color: var(--bs-primary);
+}
+
+.nav-item a.nav-link:active,
+.nav-item a.nav-link:focus {
+  color: var(--bs-primary);
+}
+
+.nav-item a.nav-link.active {
+  background-color: var(--bs-primary);
+  color: #fff;
+}
+
+.glass {
+  backdrop-filter: blur(8.1px);
+  -webkit-backdrop-filter: blur(8.1px);
+  background-color: hsla(0, 0%, 100%, 0.52);
+  border-bottom: 2px solid hsla(0, 0%, 100%, 0.57);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+}
+
+.offcanvas-navbar {
+  background-color: hsla(0, 0%, 100%, 0.9);
+  border: none;
+}
+
+.navbar-glass .navbar-toggler {
+  border-color: transparent;
+  color: transparent;
+}
+
+.navbar-glass .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0, 0, 0, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  border-radius: 0.25rem;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item {
+  font-size: 0.9em;
+  padding: 0.5rem 1rem;
+}
+
+.dropdown-item:hover {
+  background-color: var(--bs-gray-light);
+}
+
+.offcanvas {
+  transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100vh;
+    background-color: hsla(0, 0%, 100%, 0.9);
+    z-index: 1050;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+    padding: 1rem;
+  }
+
+  .navbar-collapse.show {
+    transform: translateX(0);
+  }
+}

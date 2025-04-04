@@ -1,0 +1,122 @@
+import { useState, useEffect } from 'react';
+import { api } from '../services/api';
+import './PersonalPage.css';
+
+const PersonalPage = () => {
+  const [tariffs, setTariffs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchTariffs = async () => {
+      try {
+        setLoading(true);
+        const response = await api.getPersonalTariffs();
+        if (response.success) {
+          setTariffs(response.data);
+        } else {
+          throw new Error('Failed to fetch tariffs');
+        }
+      } catch (err) {
+        console.error('Error fetching tariffs:', err);
+        setError('Не удалось загрузить данные о тарифах. Пожалуйста, попробуйте позже.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTariffs();
+  }, []);
+
+  return (
+    <div className="personal-page">
+      <div className="container mt-5 pt-5">
+        <h1 className="h-primary text-center">Калькулятор тарифов для физических лиц</h1>
+        <div className="devider mx-auto"></div>
+        
+        {loading ? (
+          <div className="text-center py-5">
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Загрузка...</span>
+            </div>
+            <p className="mt-3">Загрузка данных о тарифах...</p>
+          </div>
+        ) : error ? (
+          <div className="alert alert-danger" role="alert">
+            {error}
+          </div>
+        ) : (
+          <>
+            <p className="text-center mb-5">
+              Используйте наш калькулятор для расчета стоимости электроэнергии для вашего жилья.
+              Выберите регион, тип тарифа и введите объем потребления.
+            </p>
+            
+            <div className="alert alert-info text-center">
+              <p className="mb-0">Калькулятор для физических лиц находится в разработке и будет доступен в ближайшее время.</p>
+            </div>
+            
+            <div className="mt-5 pt-4">
+              <h2 className="h4 mb-4">Информация о тарифах по регионам</h2>
+              <div className="table-responsive">
+                <table className="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Регион</th>
+                      <th>Поставщик</th>
+                      <th>Одноставочный тариф</th>
+                      <th>Двухзонный тариф (день/ночь)</th>
+                      <th>Трехзонный тариф (пик/полупик/ночь)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {tariffs.map(tariff => {
+                      const oneRate = tariff.tariffTypes.find(t => t.name === 'Одноставочный');
+                      const twoRate = tariff.tariffTypes.find(t => t.name === 'Двухзонный');
+                      const threeRate = tariff.tariffTypes.find(t => t.name === 'Трехзонный');
+                      
+                      return (
+                        <tr key={tariff.id}>
+                          <td>{tariff.region}</td>
+                          <td>{tariff.provider}</td>
+                          <td>{oneRate ? `${oneRate.rate} ${oneRate.unit}` : 'Н/Д'}</td>
+                          <td>
+                            {twoRate ? 
+                              `${twoRate.rates[0].rate}/${twoRate.rates[1].rate} ${twoRate.rates[0].unit}` : 
+                              'Н/Д'
+                            }
+                          </td>
+                          <td>
+                            {threeRate ? 
+                              `${threeRate.rates[0].rate}/${threeRate.rates[1].rate}/${threeRate.rates[2].rate} ${threeRate.rates[0].unit}` : 
+                              'Н/Д'
+                            }
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            
+            <div className="mt-5">
+              <h2 className="h4 mb-4">Дополнительная информация</h2>
+              <p>
+                Тарифы на электроэнергию для населения устанавливаются региональными энергетическими комиссиями
+                и могут отличаться в зависимости от региона, типа населенного пункта (городской или сельский),
+                наличия электроплит и других факторов.
+              </p>
+              <p>
+                Для получения точной информации о тарифах и условиях поставки электроэнергии рекомендуем обратиться
+                непосредственно к поставщику электроэнергии в вашем регионе.
+              </p>
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default PersonalPage;

@@ -1,0 +1,131 @@
+.faq-page {
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+.devider {
+  height: 1px;
+  width: 100px;
+  background-color: var(--bs-primary);
+  margin-bottom: 2rem;
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.faq-question h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--bs-primary);
+}
+
+.faq-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faq-icon .plus,
+.faq-icon .minus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 300;
+  transition: all 0.3s ease;
+}
+
+.faq-icon .plus {
+  opacity: 1;
+}
+
+.faq-icon .minus {
+  opacity: 0;
+}
+
+.faq-item.active .faq-icon .plus {
+  opacity: 0;
+}
+
+.faq-item.active .faq-icon .minus {
+  opacity: 1;
+}
+
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+  padding: 0 20px 20px;
+  max-height: 500px;
+}
+
+.faq-answer p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--bs-secondary);
+}
+
+.btn-f-primary {
+  background-color: var(--bs-primary);
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 1;
+  transition: all 0.3s ease;
+  padding: 0.6em 2em;
+}
+
+.btn-f-primary:hover, .btn-f-primary:focus {
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  opacity: 0.7;
+}
+
+@media (max-width: 767.98px) {
+  .faq-question h3 {
+    font-size: 1rem;
+    padding-right: 10px;
+  }
+
+  .faq-item.active .faq-answer {
+    max-height: 1000px;
+  }
+}

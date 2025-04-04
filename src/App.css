@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+  --bs-primary: #1e1e1e !important;
+  --bs-secondary: #757575 !important;
+  --bs-gray-light: rgba(0, 0, 0, 0.12) !important;
+  --bs-selected-text: #fff !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+html *::selection {
+  background-color: var(--bs-primary);
+  color: var(--bs-selected-text);
+}
+
+html *::-moz-selection {
+  background-color: var(--bs-primary);
+  color: var(--bs-selected-text);
+}
+
+a {
+  text-decoration: none;
+}
+
+li, p {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+
+.text-justify {
+  text-align: justify !important;
+}
+
+.bg-light-gray {
+  background-color: #f5f5f5;
+}
+
+.h-primary {
+  color: var(--bs-primary);
+  font-family: 'Roboto', sans-serif;
+  font-size: 2.3em;
+  font-weight: 500;
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.primary-c {
+  color: var(--bs-primary);
+}
+
+.secondary-c {
+  color: var(--bs-secondary);
+}
+
+.darkgray-c {
+  color: var(--bs-gray-dark);
+}
+
+.main-content {
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.nav-logo {
+  height: 28px;
+}
+
+.navbar-glass {
+  backdrop-filter: blur(8.1px);
+  -webkit-backdrop-filter: blur(8.1px);
+  background-color: hsla(0, 0%, 100%, 0.52);
+  border-bottom: 2px solid hsla(0, 0%, 100%, 0.57);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav {
+  height: 58px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.nav-item a.nav-link {
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
+  font-weight: 500;
+  line-height: 140%;
+}
+
+.nav-item a.nav-link:hover {
+  background-color: var(--bs-gray-light);
+  color: var(--bs-primary);
+}
+
+.nav-item a.nav-link:active,
+.nav-item a.nav-link:focus {
+  color: var(--bs-primary);
+}
+
+.nav-item a.nav-link.active {
+  background-color: var(--bs-primary);
+  color: #fff;
+}
