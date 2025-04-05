@@ -1,0 +1,79 @@
+/* 
+   Файл переопределения стилей кнопок с классом "btn btn-f-primary" и "btn-block"
+   для лучшей интеграции с общим дизайном
+*/
+
+/* Замена градиентных кнопок на бесцветные */
+.btn.btn-f-primary,
+.btn-f-primary {
+  background: transparent !important;
+  border: 2px solid #0d6efd !important;
+  color: #0d6efd !important;
+  font-weight: 600 !important;
+  padding: 8px 20px !important;
+  border-radius: 6px !important;
+  transition: all 0.3s ease !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+  text-align: center !important;
+}
+
+.btn.btn-f-primary:hover, 
+.btn.btn-f-primary:focus,
+.btn-f-primary:hover,
+.btn-f-primary:focus {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+  color: #0d6efd !important;
+  box-shadow: 0 4px 10px rgba(13, 110, 253, 0.15) !important;
+  transform: translateY(-2px) !important;
+  border-color: #0d6efd !important;
+}
+
+.btn.btn-f-primary:active,
+.btn-f-primary:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 5px rgba(13, 110, 253, 0.15) !important;
+}
+
+/* Специальная обработка для кнопок внутри проектных карточек с градиентом */
+.pricing-card .btn.btn-f-primary,
+.pricing-card .btn-f-primary {
+  background-color: white !important;
+  border-color: #0d6efd !important;
+  color: #0d6efd !important;
+}
+
+.pricing-card .btn.btn-f-primary:hover,
+.pricing-card .btn-f-primary:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  color: #0d6efd !important;
+}
+
+/* Для кнопок, которые занимают весь блок */
+.btn.btn-block,
+.btn-block {
+  display: block !important;
+  width: 100% !important;
+}
+
+/* Убираем градиентный фон, если был указан */
+.btn.btn-f-primary[style*="background"],
+.btn-f-primary[style*="background"] {
+  background: transparent !important;
+}
+
+/* Исключение для кнопки AI-помощника, она должна сохранить свой стиль */
+.ai-promo-btn {
+  background-color: white !important;
+  border: none !important;
+  border-radius: 50px !important;
+  color: #1a237e !important;
+  font-weight: 600 !important;
+  padding: 0.6rem 1.5rem !important;
+  transition: all 0.2s ease !important;
+}
+
+.ai-promo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  transform: scale(1.05) !important;
+}

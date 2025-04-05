@@ -75,8 +75,8 @@ const AnalyticsPage = () => {
                         <YAxis />
                         <Tooltip formatter={(value) => [`${value} руб/кВтч`, 'Средний тариф']} />
                         <Legend />
-                        <Bar dataKey="averageRate" name="Средний тариф (руб/кВтч)" fill="#1e1e1e" />
-                        <Bar dataKey="change" name="Изменение в %" fill="#757575" />
+                        <Bar dataKey="averageRate" name="Средний тариф (руб/кВтч)" fill="#0d6efd" />
+                        <Bar dataKey="change" name="Изменение в %" fill="#4caf50" />
                       </BarChart>
                     </ResponsiveContainer>
                   </div>
@@ -105,7 +105,7 @@ const AnalyticsPage = () => {
                           type="monotone" 
                           dataKey="averageRate" 
                           name="Средний тариф (руб/кВтч)" 
-                          stroke="#1e1e1e" 
+                          stroke="#0d6efd" 
                           activeDot={{ r: 8 }} 
                         />
                       </LineChart>
@@ -166,7 +166,7 @@ const AnalyticsPage = () => {
                           type="monotone" 
                           dataKey="predictedRate" 
                           name="Прогнозируемый тариф (руб/кВтч)" 
-                          stroke="#FF8042" 
+                          stroke="#00796b" 
                           strokeDasharray="5 5"
                           activeDot={{ r: 8 }} 
                         />

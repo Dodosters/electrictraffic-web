@@ -13,6 +13,7 @@ import NewsPage from './pages/NewsPage';
 import HourlyConsumptionPage from './pages/HourlyConsumptionPage';
 import AiAssistantPage from './pages/AiAssistantPage';
 import './App.css';
+import './styles/ButtonOverride.css';
 
 function App() {
   return (
