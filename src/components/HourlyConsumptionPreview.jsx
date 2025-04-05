@@ -1,10 +1,57 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './HourlyConsumptionPreview.css';
 
 const HourlyConsumptionPreview = ({ data, onCalculate }) => {
   if (!data || !data.days || data.days.length === 0) {
     return null;
   }
+  
+  // Создаем рефы для доступа к элементам DOM
+  const tableContainerRef = useRef(null);
+  const scrollbarContainerRef = useRef(null);
+  const scrollbarTrackRef = useRef(null);
+  
+  // Синхронизация скроллбаров
+  useEffect(() => {
+    const tableContainer = tableContainerRef.current;
+    const scrollbarContainer = scrollbarContainerRef.current;
+    const scrollbarTrack = scrollbarTrackRef.current;
+    
+    if (!tableContainer || !scrollbarContainer || !scrollbarTrack) return;
+    
+    // Устанавливаем ширину трека скроллбара равной ширине таблицы
+    const updateTrackWidth = () => {
+      if (tableContainer.scrollWidth) {
+        scrollbarTrack.style.width = `${tableContainer.scrollWidth}px`;
+      }
+    };
+    
+    // Синхронизируем позицию прокрутки
+    const syncScrollPosition = (e) => {
+      if (e.target === tableContainer) {
+        scrollbarContainer.scrollLeft = tableContainer.scrollLeft;
+      } else if (e.target === scrollbarContainer) {
+        tableContainer.scrollLeft = scrollbarContainer.scrollLeft;
+      }
+    };
+    
+    // Добавляем обработчики событий
+    tableContainer.addEventListener('scroll', syncScrollPosition);
+    scrollbarContainer.addEventListener('scroll', syncScrollPosition);
+    
+    // Инициализируем ширину трека скроллбара
+    updateTrackWidth();
+    
+    // Обновляем ширину при изменении размеров окна
+    window.addEventListener('resize', updateTrackWidth);
+    
+    // Удаляем обработчики при размонтировании компонента
+    return () => {
+      tableContainer.removeEventListener('scroll', syncScrollPosition);
+      scrollbarContainer.removeEventListener('scroll', syncScrollPosition);
+      window.removeEventListener('resize', updateTrackWidth);
+    };
+  }, []);
 
   // Отображаем все дни
   const displayDays = data.days;
@@ -36,7 +83,7 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
             <strong>Предварительный просмотр:</strong> Таблица показывает почасовое потребление в кВтч для каждого дня.
           </div>
           
-          <div className="table-responsive">
+          <div className="table-responsive" ref={tableContainerRef}>
             <table className="table table-bordered hour-consumption-full-table">
               <thead>
                 <tr>
@@ -54,7 +101,7 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
                       return (
                         <td 
                           key={`consumption-${day}-${hour}`} 
-                          className={consumption > 0 ? "text-center has-value" : "text-center no-value"}
+                          className={consumption > 0 ? "text-center has-value consumption-cell" : "text-center no-value consumption-cell"}
                           title={`${day}, ${hour}:00: ${consumption > 0 ? formatConsumption(consumption) : "Нет данных"} кВтч`}
                         >
                           {consumption > 0 ? formatConsumption(consumption) : "-"}
@@ -65,6 +112,11 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
                 ))}
               </tbody>
             </table>
+          </div>
+          
+          {/* Добавляем отдельный горизонтальный скроллбар */}
+          <div className="scrollbar-container" ref={scrollbarContainerRef}>
+            <div className="scrollbar-track" ref={scrollbarTrackRef}>&nbsp;</div>
           </div>
           
           <div className="text-center mt-4">
