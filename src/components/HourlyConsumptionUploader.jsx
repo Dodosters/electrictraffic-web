@@ -37,7 +37,7 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
           console.log('Первые 200 символов файла:', text.substring(0, 200));
           
           // Отправляем CSV на обработку через API
-          const response = await api.processHourlyConsumption(text, 'Москва');
+          const response = await api.processHourlyConsumption(text, 'Ростов-на-Дону');
           
           if (!response.success) {
             throw new Error(response.error || 'Ошибка обработки данных');
@@ -107,6 +107,9 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
               </ul>
               <div className="alert alert-info mt-2">
                 <strong>Подсказка:</strong> Для файла "Подтверждение_почасового_расчета" система автоматически определяет формат.
+              </div>
+              <div className="alert alert-info mt-2">
+                <strong>Примечание:</strong> Система работает только с данными для региона "Ростов-на-Дону".
               </div>
             </div>
           </div>
