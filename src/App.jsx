@@ -11,6 +11,7 @@ import CompaniesPage from './pages/CompaniesPage';
 import FaqPage from './pages/FaqPage';
 import NewsPage from './pages/NewsPage';
 import HourlyConsumptionPage from './pages/HourlyConsumptionPage';
+import AiAssistantPage from './pages/AiAssistantPage';
 import './App.css';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/hourly" element={<HourlyConsumptionPage />} />
+            <Route path="/ai-assistant" element={<AiAssistantPage />} />
           </Routes>
         </main>
         <Footer />
