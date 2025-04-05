@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import './HomePage.css';
-import businessIcon from '../assets/business-icon.png';
 import personalIcon from '../assets/personal-icon.png';
 
 const HomePage = () => {
@@ -16,7 +15,6 @@ const HomePage = () => {
                 Цифровой сервис, объединивший всю необходимую информацию о ценах и тарифах на электрическую энергию в городах Ростовской области
               </span>
               <div className="d-flex flex-wrap gap-3 mt-4 hero-btn">
-                <Link to="/ur" className="btn btn-f-primary btn-e2b">Для бизнеса</Link>
                 <Link to="/fiz" className="btn btn-b-primary btn-e2b">Для населения</Link>
               </div>
             </div>
@@ -33,18 +31,6 @@ const HomePage = () => {
           </p>
 
           <div className="row justify-content-center gy-4">
-            <div className="col-md-4">
-              <Link to="/ur" className="calc-card d-block text-decoration-none p-4">
-                <div className="d-flex align-items-center mb-3">
-                  <img src={businessIcon} alt="Для бизнеса" className="me-3" />
-                  <h3 className="h5 mb-0 primary-c">Для юридических лиц</h3>
-                </div>
-                <p className="text-muted mb-0">
-                  Расчет стоимости электроэнергии для предприятий и организаций с учетом различных тарифных зон
-                </p>
-              </Link>
-            </div>
-
             <div className="col-md-4">
               <Link to="/fiz" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
@@ -63,7 +49,7 @@ const HomePage = () => {
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
                     <path fill="var(--bs-primary)" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />
                   </svg>
-                  <h3 className="h5 mb-0 primary-c">Почасовое потребление</h3>
+                  <h3 className="h5 mb-0 primary-c">Для предприятия</h3>
                 </div>
                 <p className="text-muted mb-0">
                   Анализ и расчет стоимости электроэнергии на основе данных о почасовом потреблении
