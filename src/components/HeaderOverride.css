@@ -64,28 +64,28 @@
 
 /* Стили для кнопки AI-помощника с градиентом */
 .ai-assistant-btn {
-  background: linear-gradient(to right, #354080, #608DC7, #6AB8E3, #5EA443, #5EA86F, #FBEF5C) !important;
+  background: linear-gradient(90deg, #1a237e, #0288d1, #00796b, #4caf50) !important;
   color: white !important;
   font-weight: 600 !important;
   display: flex !important;
   align-items: center !important;
   transition: all 0.3s ease !important;
   border-radius: 6px !important;
-  box-shadow: 0 3px 8px rgba(53, 64, 128, 0.3) !important;
+  box-shadow: 0 3px 8px rgba(26, 35, 126, 0.4) !important;
   margin-right: 8px !important;
 }
 
 .ai-assistant-btn:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 5px 15px rgba(53, 64, 128, 0.5) !important;
-  background: linear-gradient(to right, #2D3770, #5080C0, #5AADE0, #4D8937, #4D9060, #F5E94A) !important;
+  box-shadow: 0 5px 15px rgba(26, 35, 126, 0.6) !important;
+  opacity: 0.9 !important;
   color: white !important;
 }
 
 .ai-assistant-btn.active {
-  background: linear-gradient(to right, #2D3770, #5080C0, #5AADE0, #4D8937, #4D9060, #F5E94A) !important;
+  background: linear-gradient(90deg, #1a237e, #0288d1, #00796b, #4caf50) !important;
   color: white !important;
-  box-shadow: 0 3px 12px rgba(53, 64, 128, 0.6) !important;
+  box-shadow: 0 3px 12px rgba(26, 35, 126, 0.7) !important;
 }
 
 .ai-assistant-btn svg {
