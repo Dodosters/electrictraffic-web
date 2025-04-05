@@ -30,12 +30,12 @@ const Header = () => {
           <div className={`collapse navbar-collapse justify-content-end ${isNavExpanded ? 'show' : ''}`}>
             <ul className="navbar-nav mb-lg-0">
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Тарифный калькулятор
                 </a>
                 <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
                   <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                  <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Населения</Link></li>
+                  <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                   <li><hr className="dropdown-divider" /></li>
                   <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                 </ul>
@@ -96,12 +96,12 @@ const Header = () => {
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" role="button" aria-expanded="false">
+                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     Тарифный калькулятор
                   </a>
                   <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
                     <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                    <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Населения</Link></li>
+                    <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                   </ul>
