@@ -84,6 +84,11 @@
   box-shadow: -20px 20px 40px #e3e3e3, 20px -20px 40px #fff;
 }
 
+.ai-promo-card:hover .ai-promo-icon {
+  opacity: 0.2;
+  transform: rotate(0deg);
+}
+
 .calc-card img {
   opacity: 0.6;
   transition: opacity 0.2s ease;
@@ -97,6 +102,72 @@
 .calc-card p {
   font-size: 1em;
   text-align: left !important;
+}
+
+.ai-promo-card {
+  background: linear-gradient(90deg, #1a237e, #0288d1, #00796b, #4caf50);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  color: white;
+  margin-top: 40px;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ai-promo-card:hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+.ai-promo-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.ai-promo-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.ai-promo-text {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.ai-promo-btn {
+  background-color: white;
+  border: none;
+  border-radius: 50px;
+  color: #1a237e;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.ai-promo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: scale(1.05);
+}
+
+.ai-promo-icon {
+  bottom: -15px;
+  opacity: 0.15;
+  position: absolute;
+  right: -15px;
+  transform: rotate(-15deg);
+  transition: all 0.3s ease;
+  width: 120px;
+  z-index: 1;
+}
+
+.ai-promo-card:hover .ai-promo-icon {
+  opacity: 0.2;
+  transform: rotate(0deg);
 }
 
 .devider {
