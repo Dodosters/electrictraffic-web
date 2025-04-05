@@ -12,35 +12,61 @@
   -webkit-backdrop-filter: none !important;
 }
 
+/* Дополнительные стили для навигационного бара */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Стили для dropdown-menu - делаем его более современным */
+.dropdown-menu {
+  border: none !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+.dropdown-item {
+  padding: 8px 16px !important;
+  transition: all 0.2s ease !important;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(13, 110, 253, 0.1) !important;
+  color: #0d6efd !important;
+}
+
 /* Делаем ссылки явно видимыми */
-.nav-item a.nav-link,
-.navbar-nav .nav-link,
+.nav-item a.nav-link:not(.ai-assistant-btn),
+.navbar-nav .nav-link:not(.ai-assistant-btn),
 .navbar-nav .dropdown-toggle {
   color: #333 !important;
   font-weight: 600 !important;
   padding: 8px 15px !important;
   margin: 0 3px !important;
   border-radius: 6px !important;
-  background-color: rgba(240, 240, 240, 0.5) !important;
+  background-color: transparent !important;
   transition: all 0.3s ease !important;
+  border-bottom: 2px solid transparent !important;
 }
 
 /* Яркий эффект при наведении */
-.nav-item a.nav-link:hover,
-.navbar-nav .nav-link:hover,
+.nav-item a.nav-link:not(.ai-assistant-btn):hover,
+.navbar-nav .nav-link:not(.ai-assistant-btn):hover,
 .navbar-nav .dropdown-toggle:hover {
-  background-color: rgba(13, 110, 253, 0.15) !important;
+  background-color: transparent !important;
   color: #0d6efd !important;
-  box-shadow: 0 0 15px rgba(13, 110, 253, 0.4) !important;
-  transform: translateY(-2px) !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #0d6efd !important;
+  transform: none !important;
 }
 
 /* Активное состояние */
-.nav-item a.nav-link.active,
-.navbar-nav .nav-link.active {
-  background-color: #0d6efd !important;
-  color: white !important;
-  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4) !important;
+.nav-item a.nav-link:not(.ai-assistant-btn).active,
+.navbar-nav .nav-link:not(.ai-assistant-btn).active {
+  background-color: transparent !important;
+  color: #0d6efd !important;
+  box-shadow: none !important;
+  border-bottom: 2px solid #0d6efd !important;
 }
 
 /* Убираем стеклянный эффект, делаем фон непрозрачным */
@@ -62,7 +88,7 @@
   object-fit: contain !important;
 }
 
-/* Стили для кнопки AI-помощника с градиентом */
+/* Стили для кнопки AI-помощника с градиентом - оставляем неизменными */
 .ai-assistant-btn {
   background: linear-gradient(90deg, #1a237e, #0288d1, #00796b, #4caf50) !important;
   color: white !important;
@@ -73,6 +99,7 @@
   border-radius: 6px !important;
   box-shadow: 0 3px 8px rgba(26, 35, 126, 0.4) !important;
   margin-right: 8px !important;
+  border-bottom: none !important; /* Убираем нижнюю границу */
 }
 
 .ai-assistant-btn:hover {
@@ -80,12 +107,14 @@
   box-shadow: 0 5px 15px rgba(26, 35, 126, 0.6) !important;
   opacity: 0.9 !important;
   color: white !important;
+  border-bottom: none !important; /* Убираем нижнюю границу при наведении */
 }
 
 .ai-assistant-btn.active {
   background: linear-gradient(90deg, #1a237e, #0288d1, #00796b, #4caf50) !important;
   color: white !important;
   box-shadow: 0 3px 12px rgba(26, 35, 126, 0.7) !important;
+  border-bottom: none !important; /* Убираем нижнюю границу в активном состоянии */
 }
 
 .ai-assistant-btn svg {
