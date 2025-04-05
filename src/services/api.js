@@ -192,5 +192,22 @@ export const api = {
       console.error(`Error fetching news with ID ${id}:`, error);
       return { success: false, error: `Failed to fetch news with ID ${id}` };
     }
+  },
+  
+  // Submit question
+  submitQuestion: async (questionData) => {
+    try {
+      const response = await fetch(`${API_BASE_URL}/submit-question`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(questionData),
+      });
+      return await response.json();
+    } catch (error) {
+      console.error('Error submitting question:', error);
+      return { success: false, error: 'Failed to submit question' };
+    }
   }
 };
