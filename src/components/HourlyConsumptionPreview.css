@@ -47,11 +47,25 @@
   border-collapse: separate;
   border-spacing: 0;
   width: 100%;
+  table-layout: fixed;
+}
+
+.hourly-consumption-preview .table th,
+.hourly-consumption-preview .table td {
+  min-width: 50px; /* Минимальная ширина ячеек */
+}
+
+.hourly-consumption-preview .table th:first-child,
+.hourly-consumption-preview .table td:first-child {
+  min-width: 140px; /* Увеличенная ширина колонки с датой */
+  width: 140px;
 }
 
 .hourly-consumption-preview .table-responsive {
-  max-height: 500px;
+  max-height: 70vh; /* Увеличиваем высоту таблицы до 70% высоты окна */
   overflow-y: auto;
+  overflow-x: auto; /* Разрешаем горизонтальную прокрутку при необходимости */
+  width: 100%;
 }
 
 /* Стилизация четных и нечетных строк для лучшей читаемости */
@@ -76,4 +90,63 @@
 
 .hourly-consumption-preview .table tbody td.no-value {
   color: #ccc;
+}
+
+/* Дополнительные стили для растягивания таблицы на всю ширину */
+.hourly-consumption-preview .card-body {
+  padding: 0; /* Убираем внутренние отступы внутри карточки */
+}
+
+.hourly-consumption-preview .alert {
+  margin: 1rem; /* Добавляем отступы для предупреждений */
+}
+
+.hourly-consumption-preview .text-center {
+  padding: 1rem 0; /* Добавляем отступы для кнопок и центрированного текста */
+}
+
+.hourly-consumption-preview .table-responsive {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0 0 10px 10px;
+}
+
+/* Стили для таблицы с фиксированными осями */
+.hour-consumption-full-table {
+  width: 100% !important;
+  table-layout: fixed !important;
+}
+
+.hour-consumption-full-table th,
+.hour-consumption-full-table td {
+  min-width: 80px; /* Увеличиваем минимальную ширину столбцов */
+  width: auto;
+  box-sizing: border-box;
+  font-size: 0.85rem; /* Уменьшаем размер шрифта */
+  white-space: nowrap; /* Предотвращаем перенос текста */
+}
+
+/* Фиксируем первую колонку (ось Y) */
+.hourly-consumption-preview .sticky-column {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: #f8f9fa;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  width: 140px; /* Увеличиваем ширину колонки с датами */
+}
+
+/* Фиксируем заголовок (ось X) */
+.hourly-consumption-preview thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: #f0f4f8;
+}
+
+/* Стиль для угловой ячейки (пересечение осей) */
+.hourly-consumption-preview thead th.sticky-column {
+  z-index: 20;
+  background-color: #e6e9ed;
 }

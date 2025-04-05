@@ -6,10 +6,9 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
     return null;
   }
 
-  // Ограничиваем количество отображаемых дней для предварительного просмотра
-  const maxDaysToShow = 10;
-  const displayDays = data.days.slice(0, maxDaysToShow);
-  const hasMoreDays = data.days.length > maxDaysToShow;
+  // Отображаем все дни
+  const displayDays = data.days;
+  const hasMoreDays = false;
 
   // Подготовим заголовки часов
   const hourHeaders = [];
@@ -35,28 +34,27 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
         <div className="card-body">
           <div className="alert alert-info mb-3">
             <strong>Предварительный просмотр:</strong> Таблица показывает почасовое потребление в кВтч для каждого дня.
-            {hasMoreDays && ` Показаны первые ${maxDaysToShow} дней из ${data.days.length}.`}
           </div>
           
           <div className="table-responsive">
-            <table className="table table-bordered">
+            <table className="table table-bordered hour-consumption-full-table">
               <thead>
                 <tr>
-                  <th>Дата</th>
+                  <th className="sticky-column">Дата</th>
                   {hourHeaders}
                 </tr>
               </thead>
               <tbody>
                 {displayDays.map((day, index) => (
                   <tr key={`day-${index}`}>
-                    <td>{day}</td>
+                    <td className="sticky-column">{day}</td>
                     {Array.from({ length: 24 }, (_, hourIndex) => {
                       const hour = hourIndex + 1;
                       const consumption = data.hoursData[day]?.[hour] || 0;
                       return (
                         <td 
                           key={`consumption-${day}-${hour}`} 
-                          className={consumption > 0 ? "text-end has-value" : "text-end no-value"}
+                          className={consumption > 0 ? "text-center has-value" : "text-center no-value"}
                           title={`${day}, ${hour}:00: ${consumption > 0 ? formatConsumption(consumption) : "Нет данных"} кВтч`}
                         >
                           {consumption > 0 ? formatConsumption(consumption) : "-"}
