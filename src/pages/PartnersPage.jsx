@@ -57,59 +57,96 @@ const PartnersPage = () => {
                   </p>
                   
                   <div className="api-endpoints mt-4">
-                    <h3 className="h5 mb-3">Основные эндпоинты:</h3>
+                    <h3 className="h5 mb-3">Эндпоинты API:</h3>
+                    
+                    <h4 className="mt-4 mb-2">Тарифы для бизнеса</h4>
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/tariffs/business</div>
+                      <div className="endpoint-url">/business-tariffs</div>
                       <div className="endpoint-desc">Получение тарифов для юридических лиц</div>
                     </div>
                     
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/tariffs/business/{'{region}'}</div>
+                      <div className="endpoint-url">/business-tariffs/{'{region}'}</div>
                       <div className="endpoint-desc">Получение тарифов для юридических лиц по региону</div>
                     </div>
                     
+                    <h4 className="mt-4 mb-2">Тарифы для населения</h4>
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/tariffs/personal</div>
+                      <div className="endpoint-url">/personal-tariffs</div>
                       <div className="endpoint-desc">Получение тарифов для физических лиц</div>
                     </div>
                     
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/tariffs/personal/{'{region}'}</div>
+                      <div className="endpoint-url">/personal-tariffs/{'{region}'}</div>
                       <div className="endpoint-desc">Получение тарифов для физических лиц по региону</div>
                     </div>
                     
+                    <h4 className="mt-4 mb-2">Энергетические компании</h4>
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/providers</div>
+                      <div className="endpoint-url">/providers</div>
                       <div className="endpoint-desc">Получение списка поставщиков электроэнергии</div>
                     </div>
                     
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/providers/{'{id}'}</div>
+                      <div className="endpoint-url">/providers/{'{id}'}</div>
                       <div className="endpoint-desc">Получение информации о конкретном поставщике</div>
                     </div>
                     
+                    <h4 className="mt-4 mb-2">Расчет стоимости</h4>
                     <div className="api-endpoint">
                       <div className="endpoint-method">POST</div>
-                      <div className="endpoint-url">/api/v1/calculate/business</div>
+                      <div className="endpoint-url">/calculate/business</div>
                       <div className="endpoint-desc">Расчет стоимости электроэнергии для юридических лиц</div>
                     </div>
                     
                     <div className="api-endpoint">
                       <div className="endpoint-method">POST</div>
-                      <div className="endpoint-url">/api/v1/calculate/personal</div>
+                      <div className="endpoint-url">/calculate/personal</div>
                       <div className="endpoint-desc">Расчет стоимости электроэнергии для физических лиц</div>
+                    </div>
+                    
+                    <h4 className="mt-4 mb-2">Почасовое потребление</h4>
+                    <div className="api-endpoint">
+                      <div className="endpoint-method">POST</div>
+                      <div className="endpoint-url">/process-hourly-consumption</div>
+                      <div className="endpoint-desc">Обработка данных о почасовом потреблении (для предприятий)</div>
+                    </div>
+                    
+                    <div className="api-endpoint">
+                      <div className="endpoint-method">POST</div>
+                      <div className="endpoint-url">/process-hourly-consumption-string</div>
+                      <div className="endpoint-desc">Обработка данных о почасовом потреблении в формате строки</div>
+                    </div>
+                    
+                    <h4 className="mt-4 mb-2">Новости и информация</h4>
+                    <div className="api-endpoint">
+                      <div className="endpoint-method">GET</div>
+                      <div className="endpoint-url">/analytics</div>
+                      <div className="endpoint-desc">Получение аналитических данных о тарифах</div>
                     </div>
                     
                     <div className="api-endpoint">
                       <div className="endpoint-method">GET</div>
-                      <div className="endpoint-url">/api/v1/analytics</div>
-                      <div className="endpoint-desc">Получение аналитических данных о тарифах</div>
+                      <div className="endpoint-url">/faqs</div>
+                      <div className="endpoint-desc">Получение часто задаваемых вопросов</div>
+                    </div>
+                    
+                    <div className="api-endpoint">
+                      <div className="endpoint-method">GET</div>
+                      <div className="endpoint-url">/news</div>
+                      <div className="endpoint-desc">Получение списка новостей</div>
+                    </div>
+                    
+                    <div className="api-endpoint">
+                      <div className="endpoint-method">GET</div>
+                      <div className="endpoint-url">/news/{'{id}'}</div>
+                      <div className="endpoint-desc">Получение детальной информации о новости</div>
                     </div>
                   </div>
                   
@@ -125,9 +162,33 @@ const PartnersPage = () => {
                     <div className="code-example mt-3">
                       <pre>
                         <code>
-                          {`curl -X GET \\
-  "https://api.etarif.ru/v1/tariffs/business" \\
-  -H "X-API-Key: YOUR_API_KEY"`}
+                          {`// Пример запроса получения тарифов для населения
+fetch("https://api.etarif.ru/personal-tariffs", {
+  headers: {
+    "X-API-Key": "YOUR_API_KEY"
+  }
+})
+.then(response => response.json())
+.then(data => console.log(data))
+.catch(error => console.error("Ошибка:", error));
+
+// Пример расчета стоимости по почасовому потреблению
+const hourlyData = {
+  csvData: "Дата;Час;Потребление\\n01.02.2024;1;0,5\\n01.02.2024;2;0,7",
+  region: "Ростов-на-Дону"
+};
+
+fetch("https://api.etarif.ru/process-hourly-consumption-string", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "X-API-Key": "YOUR_API_KEY"
+  },
+  body: JSON.stringify(hourlyData)
+})
+.then(response => response.json())
+.then(result => console.log(result))
+.catch(error => console.error("Ошибка:", error));`}
                         </code>
                       </pre>
                     </div>
