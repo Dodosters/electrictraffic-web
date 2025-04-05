@@ -230,5 +230,47 @@ export const api = {
       console.error('Error submitting question:', error);
       return { success: false, error: 'Failed to submit question' };
     }
+  },
+
+  // Get chart data from Excel file
+  getChartData: async (file, viewType = 'hourly') => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      const response = await fetch(`${API_BASE_URL}/chart-data?view_type=${viewType}`, {
+        method: 'POST',
+        body: formData,
+      });
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error processing chart data:', error);
+      return { 
+        success: false, 
+        error: 'Error processing chart data: ' + error.message 
+      };
+    }
+  },
+  
+  // Get weekday profile data from Excel file
+  getWeekdayProfile: async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      const response = await fetch(`${API_BASE_URL}/weekday-profile`, {
+        method: 'POST',
+        body: formData,
+      });
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error processing weekday profile data:', error);
+      return { 
+        success: false, 
+        error: 'Error processing weekday profile data: ' + error.message 
+      };
+    }
   }
 };
