@@ -11,8 +11,17 @@ const HourlyConsumptionPage = () => {
   const [consumptionData, setConsumptionData] = useState(null);
   const [chartType, setChartType] = useState('line'); // 'line' или 'bar'
 
+  // Обработчик получения данных от API после расчета
   const handleDataLoaded = (data) => {
     setConsumptionData(data);
+    
+    // Прокрутка к результатам
+    setTimeout(() => {
+      const resultsSection = document.getElementById('results-section');
+      if (resultsSection) {
+        resultsSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
   };
 
   // Подготовка данных для графика, если данные загружены
@@ -85,7 +94,8 @@ const HourlyConsumptionPage = () => {
         <HourlyConsumptionUploader onDataLoaded={handleDataLoaded} />
         
         {consumptionData && (
-          <>
+          <div id="results-section">
+            <h2 className="mt-5 mb-4 text-center">Результаты расчета</h2>
             <HourlyConsumptionTable data={consumptionData} />
             
             <div className="chart-container">
@@ -158,7 +168,7 @@ const HourlyConsumptionPage = () => {
                             yAxisId="left"
                             dataKey="consumption" 
                             name="Потребление (кВтч)" 
-                            fill={(entry) => getZoneColor(entry.zone)}
+                            fill="#3f51b5"
                           />
                           <Bar 
                             yAxisId="right"
@@ -203,7 +213,7 @@ const HourlyConsumptionPage = () => {
                 на электроэнергию для вашего предприятия.
               </p>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>

@@ -1,59 +1,58 @@
 import { useState } from 'react';
 import { api } from '../services/api';
 import './HourlyConsumptionUploader.css';
+import { parseHourlyConsumptionData, convertToApiFormat } from '../utils/csvParser';
+import HourlyConsumptionPreview from './HourlyConsumptionPreview';
 
 const HourlyConsumptionUploader = ({ onDataLoaded }) => {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [csvText, setCsvText] = useState(null);
+  const [parsedData, setParsedData] = useState(null);
+  const [calculating, setCalculating] = useState(false);
 
+  // Обработка выбора файла
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
       setFile(selectedFile);
       setError(null);
+      setParsedData(null);
+      setCsvText(null);
+      readFile(selectedFile);
     }
   };
 
-  const handleUpload = async () => {
-    if (!file) {
-      setError('Пожалуйста, выберите файл');
-      return;
-    }
-    
+  // Чтение файла и предварительный анализ
+  const readFile = async (file) => {
     setLoading(true);
-    setError(null);
     
     try {
       const reader = new FileReader();
       
-      reader.onload = async (e) => {
+      reader.onload = (e) => {
         try {
           const text = e.target.result;
+          setCsvText(text);
           
           // Добавляем логирование формата файла
           console.log('Загруженный файл:', file.name);
           console.log('Размер файла:', file.size, 'байт');
           console.log('Первые 200 символов файла:', text.substring(0, 200));
           
-          // Отправляем CSV на обработку через API
-          const response = await api.processHourlyConsumption(text, 'Ростов-на-Дону');
+          // Анализируем CSV и создаем предварительную таблицу
+          const data = parseHourlyConsumptionData(text);
           
-          if (!response.success) {
-            throw new Error(response.error || 'Ошибка обработки данных');
+          if (data.days.length === 0) {
+            throw new Error('Не удалось найти данные о потреблении в указанном файле');
           }
           
-          // Передаем обработанные данные вызывающему компоненту
-          onDataLoaded(response.data);
-          
+          setParsedData(data);
           setLoading(false);
         } catch (err) {
           console.error('Ошибка обработки файла:', err);
-          setError(`${err.message} 
-            
-Проверьте, что файл соответствует одному из поддерживаемых форматов.
-Если ошибка повторяется, попробуйте открыть CSV-файл в текстовом редакторе и проверить его содержимое.
-Также можно попробовать экспортировать данные в другом формате или использовать разделитель ";"`.trim());
+          setError(`Ошибка обработки файла: ${err.message}`);
           setLoading(false);
         }
       };
@@ -71,9 +70,45 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
     }
   };
 
+  // Обработка нажатия кнопки "Рассчитать"
+  const handleCalculate = async () => {
+    if (!csvText || !parsedData) {
+      setError('Ошибка: нет данных для расчета');
+      return;
+    }
+    
+    setCalculating(true);
+    setError(null);
+    
+    try {
+      // Преобразуем данные для отправки в API
+      const formattedCsv = convertToApiFormat(parsedData);
+      
+      // Отправляем данные на обработку через API
+      const response = await api.processHourlyConsumption(formattedCsv, 'Ростов-на-Дону');
+      
+      if (!response.success) {
+        throw new Error(response.error || 'Ошибка обработки данных');
+      }
+      
+      // Передаем обработанные данные вызывающему компоненту
+      onDataLoaded(response.data);
+      
+      setCalculating(false);
+    } catch (err) {
+      console.error('Ошибка при расчете:', err);
+      setError(`${err.message} 
+        
+Проверьте, что файл соответствует одному из поддерживаемых форматов.
+Если ошибка повторяется, попробуйте открыть CSV-файл в текстовом редакторе и проверить его содержимое.
+Также можно попробовать экспортировать данные в другом формате или использовать разделитель ";"`.trim());
+      setCalculating(false);
+    }
+  };
+
   return (
     <div className="hourly-uploader">
-      <div className="card">
+      <div className="card mb-4">
         <div className="card-header">
           <h3 className="card-title">Загрузка файла почасового потребления</h3>
         </div>
@@ -92,7 +127,7 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
               id="csv-file" 
               accept=".csv" 
               onChange={handleFileChange}
-              disabled={loading}
+              disabled={loading || calculating}
             />
             <div className="form-text">
               Файл должен содержать данные о потреблении электроэнергии по часам за каждый день.
@@ -114,21 +149,34 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
             </div>
           </div>
           
-          <button 
-            type="button" 
-            className="btn btn-primary"
-            onClick={handleUpload}
-            disabled={!file || loading}
-          >
-            {loading ? (
-              <>
-                <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                Обработка...
-              </>
-            ) : 'Загрузить'}
-          </button>
+          {loading && (
+            <div className="text-center my-4">
+              <span className="spinner-border text-primary" role="status" aria-hidden="true"></span>
+              <p className="mt-2">Загрузка и анализ файла...</p>
+            </div>
+          )}
         </div>
       </div>
+      
+      {/* Предварительный просмотр данных */}
+      {parsedData && !loading && (
+        <HourlyConsumptionPreview 
+          data={parsedData} 
+          onCalculate={handleCalculate} 
+        />
+      )}
+      
+      {/* Индикатор выполнения расчета */}
+      {calculating && (
+        <div className="card">
+          <div className="card-body">
+            <div className="text-center my-4">
+              <span className="spinner-border text-primary" role="status" aria-hidden="true"></span>
+              <p className="mt-2">Выполняется расчет стоимости...</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
