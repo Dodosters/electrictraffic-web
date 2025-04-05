@@ -50,6 +50,18 @@
   background-color: white !important;
 }
 
+/* Настройки для логотипа */
+.navbar-brand {
+  padding: 8px 0 !important;
+  margin-right: 15px !important;
+}
+
+.nav-logo {
+  max-height: 40px !important;
+  width: auto !important;
+  object-fit: contain !important;
+}
+
 /* Мобильное меню */
 @media (max-width: 767.98px) {
   .navbar-collapse.show {

@@ -84,7 +84,7 @@ const HourlyConsumptionPage = () => {
     <div className="hourly-consumption-page">
       <div className="container mt-5 pt-5">
         <h1 className="h-primary text-center">Почасовое потребление электроэнергии</h1>
-        <div className="devider mx-auto"></div>
+        <div className="section-divider socket"></div>
         
         <p className="text-center mb-5">
           Загрузите файл с почасовыми данными потребления электроэнергии для анализа и расчета стоимости

@@ -126,7 +126,7 @@ const FaqPage = () => {
     <div className="faq-page">
       <div className="container mt-5 pt-5">
         <h1 className="h-primary text-center">Часто задаваемые вопросы</h1>
-        <div className="devider mx-auto"></div>
+        <div className="section-divider socket"></div>
         
         {loading ? (
           <div className="text-center py-5">
@@ -174,7 +174,7 @@ const FaqPage = () => {
                 о тарифах на электроэнергию или использовании нашего сервиса.
               </p>
               <button 
-                className="btn btn-f-primary mt-3" 
+                className="btn btn-f-primary btn-e2b mt-3" 
                 onClick={handleOpenModal}
               >
                 Задать вопрос
@@ -201,7 +201,7 @@ const FaqPage = () => {
                   Ваш вопрос успешно отправлен! Мы свяжемся с вами в ближайшее время.
                 </div>
                 <div className="text-center">
-                  <button className="btn btn-f-primary" onClick={handleCloseModal}>
+                  <button className="btn btn-f-primary btn-e2b" onClick={handleCloseModal}>
                     Закрыть
                   </button>
                 </div>
@@ -266,7 +266,7 @@ const FaqPage = () => {
                   <div className="form-group text-center">
                     <button 
                       type="submit" 
-                      className="btn btn-f-primary btn-lg" 
+                      className="btn btn-f-primary btn-e2b" 
                       disabled={submitting}
                     >
                       {submitting ? (

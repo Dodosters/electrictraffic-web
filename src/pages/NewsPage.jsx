@@ -60,7 +60,7 @@ const NewsPage = () => {
     <div className="news-page">
       <div className="container mt-5 pt-5">
         <h1 className="h-primary text-center">Новости</h1>
-        <div className="devider mx-auto"></div>
+        <div className="section-divider"></div>
         
         {loading && news.length === 0 ? (
           <div className="text-center py-5">

@@ -55,7 +55,7 @@ const CompaniesPage = () => {
     <div className="companies-page">
       <div className="container mt-5 pt-5">
         <h1 className="h-primary text-center">Компании-поставщики электроэнергии</h1>
-        <div className="devider mx-auto"></div>
+        <div className="section-divider"></div>
         
         {loading && providers.length === 0 ? (
           <div className="text-center py-5">

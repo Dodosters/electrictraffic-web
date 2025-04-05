@@ -8,7 +8,7 @@ const PartnersPage = () => {
     <div className="partners-page">
       <div className="container mt-5 pt-5">
         <h1 className="h-primary text-center">Для партнеров</h1>
-        <div className="devider mx-auto"></div>
+        <div className="section-divider socket"></div>
         
         <p className="text-center mb-5">
           Интегрируйте данные о тарифах на электроэнергию в ваши продукты и сервисы с помощью нашего API

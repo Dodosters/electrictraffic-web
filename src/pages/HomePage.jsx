@@ -10,7 +10,7 @@ const HomePage = () => {
           <div className="row align-items-center">
             <div className="col-md-6 hero-img"></div>
             <div className="col-md-6">
-              <h1>Etarif - Ростовская область</h1>
+              <h1>ТНС - Ростовская область</h1>
               <span className="hero-span">
                 Цифровой сервис, объединивший всю необходимую информацию о ценах и тарифах на электрическую энергию в городах Ростовской области
               </span>
@@ -23,7 +23,7 @@ const HomePage = () => {
       <section id="calc" className="py-5 bg-light-gray">
         <div className="container">
           <h2 className="h-primary text-center">Тарифные калькуляторы</h2>
-          <div className="devider mx-auto"></div>
+          <div className="section-divider"></div>
           <p className="text-center mb-5">
             Выберите тип тарифного калькулятора для расчета стоимости электроэнергии
           </p>
@@ -63,9 +63,9 @@ const HomePage = () => {
       <section id="about" className="py-5">
         <div className="container">
           <h2 className="h-primary text-center">О сервисе</h2>
-          <div className="devider mx-auto"></div>
+          <div className="section-divider socket"></div>
           <p className="text-center mb-5">
-            Etarif — это цифровой сервис, который помогает пользователям быстро и легко ориентироваться 
+            ТНС — это цифровой сервис, который помогает пользователям быстро и легко ориентироваться
             в тарифах на электроэнергию
           </p>
 

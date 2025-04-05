@@ -21,7 +21,7 @@ const Header = () => {
         <div className="container-fluid glass main-nav"></div>
         <div className="container-sm d-flex justify-content-between">
           <Link className="navbar-brand" to="/">
-            <img style={{ width: '90px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
+            <img style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
           </Link>
           <button className="navbar-toggler" type="button" onClick={toggleNav}>
             <span className="navbar-toggler-icon"></span>
@@ -39,10 +39,6 @@ const Header = () => {
                   <li><hr className="dropdown-divider" /></li>
                   <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                 </ul>
-              </li>
-              
-              <li className="nav-item">
-                <NavLink className="nav-link primary-c px-3" to="/" onClick={closeNav}>Главная</NavLink>
               </li>
               
               <li className="nav-item">
@@ -90,7 +86,7 @@ const Header = () => {
 
           <div className={`offcanvas offcanvas-end glass offcanvas-navbar d-md-none ${isNavExpanded ? 'show' : ''}`}>
             <div className="offcanvas-header">
-              <img width="90" style={{ width: '90px' }} src={logo} alt="Логотип Etarif" className="nav-logo mx-auto" />
+              <img width="110" style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo mx-auto" />
               <button type="button" className="btn-close btn-close-dark" onClick={closeNav}></button>
             </div>
             <div className="offcanvas-body">
@@ -105,10 +101,6 @@ const Header = () => {
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                   </ul>
-                </li>
-                
-                <li className="nav-item my-1">
-                  <NavLink className="nav-link primary-c px-3" to="/" onClick={closeNav}>Главная</NavLink>
                 </li>
                 
                 <li className="nav-item my-1">
