@@ -11,9 +11,9 @@ const HomePage = () => {
           <div className="row align-items-center">
             <div className="col-md-6 hero-img"></div>
             <div className="col-md-6">
-              <h1>Etarif</h1>
+              <h1>Etarif - Ростовская область</h1>
               <span className="hero-span">
-                Цифровой сервис, объединивший всю необходимую информацию о ценах и тарифах на электрическую энергию
+                Цифровой сервис, объединивший всю необходимую информацию о ценах и тарифах на электрическую энергию в городах Ростовской области
               </span>
               <div className="d-flex flex-wrap gap-3 mt-4 hero-btn">
                 <Link to="/ur" className="btn btn-f-primary btn-e2b">Для бизнеса</Link>
@@ -111,7 +111,7 @@ const HomePage = () => {
                   <h3 className="h5 mt-3 primary-c">Актуальные данные</h3>
                 </div>
                 <p className="text-muted text-center">
-                  Всегда актуальная информация о тарифах на электроэнергию по всем регионам России
+                  Всегда актуальная информация о тарифах на электроэнергию по всем городам Ростовской области
                 </p>
               </div>
             </div>
@@ -127,7 +127,7 @@ const HomePage = () => {
                   <h3 className="h5 mt-3 primary-c">Аналитика</h3>
                 </div>
                 <p className="text-muted text-center">
-                  Сравнение тарифов между регионами и отслеживание динамики изменения цен
+                  Сравнение тарифов между городами Ростовской области и отслеживание динамики изменения цен
                 </p>
               </div>
             </div>

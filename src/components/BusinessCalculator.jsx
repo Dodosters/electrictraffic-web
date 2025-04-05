@@ -71,7 +71,7 @@ const BusinessCalculator = ({ tariffs }) => {
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
               <div className="col-md-6">
-                <label htmlFor="region" className="form-label">Регион</label>
+                <label htmlFor="region" className="form-label">Город</label>
                 <select 
                   id="region"
                   className="form-select"
@@ -82,7 +82,7 @@ const BusinessCalculator = ({ tariffs }) => {
                   }}
                   required
                 >
-                  <option value="">Выберите регион</option>
+                  <option value="">Выберите город</option>
                   {tariffs.map(tariff => (
                     <option key={tariff.id} value={tariff.region}>
                       {tariff.region}
@@ -162,7 +162,7 @@ const BusinessCalculator = ({ tariffs }) => {
               <h4 className="mb-3">Результат расчета:</h4>
               <div className="row">
                 <div className="col-md-6">
-                  <p><strong>Регион:</strong> {result.region}</p>
+                  <p><strong>Город:</strong> {result.region}</p>
                   <p><strong>Тип тарифа:</strong> {result.tariffType}</p>
                 </div>
                 <div className="col-md-6">
