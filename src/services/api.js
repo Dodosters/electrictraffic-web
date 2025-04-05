@@ -162,6 +162,27 @@ export const api = {
     }
   },
   
+  // Process Excel file using the /process-excel endpoint
+  processExcelFile: async (file) => {
+    try {
+      const formData = new FormData();
+      formData.append('file', file);
+      
+      const response = await fetch(`${API_BASE_URL}/process-excel`, {
+        method: 'POST',
+        body: formData,
+      });
+      
+      return await response.json();
+    } catch (error) {
+      console.error('Error processing Excel file:', error);
+      return { 
+        success: false, 
+        error: 'Error processing Excel file: ' + error.message 
+      };
+    }
+  },
+  
   // FAQ endpoints
   getFAQs: async () => {
     try {
