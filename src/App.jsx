@@ -7,7 +7,6 @@ import BusinessPage from './pages/BusinessPage';
 import PersonalPage from './pages/PersonalPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import PartnersPage from './pages/PartnersPage';
-import CompaniesPage from './pages/CompaniesPage';
 import FaqPage from './pages/FaqPage';
 import NewsPage from './pages/NewsPage';
 import HourlyConsumptionPage from './pages/HourlyConsumptionPage';
@@ -27,7 +26,6 @@ function App() {
             <Route path="/fiz" element={<PersonalPage />} />
             <Route path="/analytics" element={<AnalyticsPage />} />
             <Route path="/data_api" element={<PartnersPage />} />
-            <Route path="/companies" element={<CompaniesPage />} />
             <Route path="/faq" element={<FaqPage />} />
             <Route path="/news" element={<NewsPage />} />
             <Route path="/hourly" element={<HourlyConsumptionPage />} />

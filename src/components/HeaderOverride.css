@@ -18,6 +18,48 @@
   align-items: center;
 }
 
+/* Центрирование и расположение элементов навигации */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+/* Одинаковые отступы между элементами навигации */
+.navbar-nav .nav-item {
+  margin: 0 3px !important;
+}
+
+/* Установка максимальной ширины навигации, чтобы она была центрирована */
+@media (min-width: 768px) {
+  .navbar-collapse {
+    max-width: fit-content;
+    margin: 0 auto;
+  }
+  
+  /* Настройка контейнера для центрирования */
+  .container-sm {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Расположение логотипа рядом с AI-помощником */
+  .logo-item + .nav-item {
+    margin-left: 3px !important;
+  }
+}
+
+/* Логотип в навигации */
+.navbar-brand {
+  padding: 8px 0 !important;
+  margin: 0 !important;
+}
+
+/* Равное отступы справа и слева в навбаре */
+.container-sm {
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+}
+
 /* Стили для dropdown-menu - делаем его более современным */
 .dropdown-menu {
   border: none !important;
@@ -79,13 +121,29 @@
 /* Настройки для логотипа */
 .navbar-brand {
   padding: 8px 0 !important;
-  margin-right: 15px !important;
+  margin: 0 !important;
 }
 
 .nav-logo {
   max-height: 40px !important;
   width: auto !important;
   object-fit: contain !important;
+}
+
+/* Стили для элемента логотипа в навигации */
+.logo-item {
+  margin-right: 3px !important; 
+}
+
+/* Выравнивание логотипа по вертикали */
+.logo-item .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+/* Обеспечиваем одинаковое расстояние между логотипом и кнопкой AI-помощника */
+.navbar-nav .logo-item + .nav-item {
+  margin-left: 3px !important;
 }
 
 /* Стили для кнопки AI-помощника с градиентом - оставляем неизменными */
@@ -133,5 +191,26 @@
   .navbar-collapse.show {
     background-color: white !important;
     box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
+  }
+  
+  /* В мобильном режиме располагаем логотип, гамбургер и выпадающее меню */
+  .container-sm {
+    justify-content: space-between !important;
+  }
+
+  /* Стили для мобильного меню */
+  .navbar-collapse {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100vh;
+    z-index: 1050;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .navbar-collapse.show {
+    transform: translateX(0);
   }
 }

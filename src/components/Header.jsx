@@ -19,16 +19,21 @@ const Header = () => {
     <header>
       <nav className="navbar navbar-glass navbar-expand-md fixed-top">
         <div className="container-fluid glass main-nav"></div>
-        <div className="container-sm d-flex justify-content-between">
-          <Link className="navbar-brand" to="/">
+        <div className="container-sm d-flex justify-content-center">
+          <Link className="navbar-brand d-md-none" to="/">
             <img style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
           </Link>
           <button className="navbar-toggler" type="button" onClick={toggleNav}>
             <span className="navbar-toggler-icon"></span>
           </button>
 
-          <div className={`collapse navbar-collapse justify-content-end ${isNavExpanded ? 'show' : ''}`}>
-            <ul className="navbar-nav mb-lg-0">
+          <div className={`collapse navbar-collapse ${isNavExpanded ? 'show' : ''}`}>
+            <ul className="navbar-nav mx-auto align-items-center">
+              <li className="nav-item logo-item d-none d-md-block">
+                <Link className="navbar-brand" to="/">
+                  <img style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
+                </Link>
+              </li>
               <li className="nav-item">
                 <NavLink className="nav-link primary-c px-3 ai-assistant-btn" to="/ai-assistant" onClick={closeNav}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" viewBox="0 0 16 16" className="me-1">
@@ -57,10 +62,6 @@ const Header = () => {
               
               <li className="nav-item">
                 <NavLink className="nav-link primary-c px-3" to="/data_api" onClick={closeNav}>Для партнеров</NavLink>
-              </li>
-              
-              <li className="nav-item">
-                <NavLink className="nav-link primary-c px-3" to="/companies" onClick={closeNav}>Компании-поставщики</NavLink>
               </li>
               
               <li className="nav-item">
@@ -129,10 +130,6 @@ const Header = () => {
                 
                 <li className="nav-item my-1">
                   <NavLink className="nav-link primary-c px-3" to="/data_api" onClick={closeNav}>Для партнеров</NavLink>
-                </li>
-                
-                <li className="nav-item my-1">
-                  <NavLink className="nav-link primary-c px-3" to="/companies" onClick={closeNav}>Компании-поставщики</NavLink>
                 </li>
                 
                 <li className="nav-item my-1">
