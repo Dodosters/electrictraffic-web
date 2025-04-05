@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
+import './HeaderOverride.css'; // Добавляем стили с высоким приоритетом
 import logo from '../assets/logo.png';
 
 const Header = () => {
@@ -17,7 +18,7 @@ const Header = () => {
   return (
     <header>
       <nav className="navbar navbar-glass navbar-expand-md fixed-top">
-        <div className="container-fluid glass main-nav" style={{ pointerEvents: 'none' }}></div>
+        <div className="container-fluid glass main-nav"></div>
         <div className="container-sm d-flex justify-content-between">
           <Link className="navbar-brand" to="/">
             <img style={{ width: '90px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />

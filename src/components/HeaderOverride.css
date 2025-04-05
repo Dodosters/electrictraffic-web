@@ -1,0 +1,59 @@
+/* 
+   Файл переопределения стилей хедера с высоким приоритетом
+   Эти стили будут иметь приоритет над другими стилями
+*/
+
+/* Яркий и четкий хедер */
+.navbar-glass {
+  background-color: white !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15) !important;
+  border-bottom: 3px solid #0d6efd !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Делаем ссылки явно видимыми */
+.nav-item a.nav-link,
+.navbar-nav .nav-link,
+.navbar-nav .dropdown-toggle {
+  color: #333 !important;
+  font-weight: 600 !important;
+  padding: 8px 15px !important;
+  margin: 0 3px !important;
+  border-radius: 6px !important;
+  background-color: rgba(240, 240, 240, 0.5) !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Яркий эффект при наведении */
+.nav-item a.nav-link:hover,
+.navbar-nav .nav-link:hover,
+.navbar-nav .dropdown-toggle:hover {
+  background-color: rgba(13, 110, 253, 0.15) !important;
+  color: #0d6efd !important;
+  box-shadow: 0 0 15px rgba(13, 110, 253, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Активное состояние */
+.nav-item a.nav-link.active,
+.navbar-nav .nav-link.active {
+  background-color: #0d6efd !important;
+  color: white !important;
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4) !important;
+}
+
+/* Убираем стеклянный эффект, делаем фон непрозрачным */
+.glass {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background-color: white !important;
+}
+
+/* Мобильное меню */
+@media (max-width: 767.98px) {
+  .navbar-collapse.show {
+    background-color: white !important;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.3) !important;
+  }
+}

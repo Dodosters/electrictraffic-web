@@ -72,42 +72,4 @@ li, p {
   height: 28px;
 }
 
-.navbar-glass {
-  backdrop-filter: blur(8.1px);
-  -webkit-backdrop-filter: blur(8.1px);
-  background-color: hsla(0, 0%, 100%, 0.52);
-  border-bottom: 2px solid hsla(0, 0%, 100%, 0.57);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-}
-
-.main-nav {
-  height: 58px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-}
-
-.nav-item a.nav-link {
-  border-radius: 4px;
-  font-family: 'Roboto', sans-serif;
-  font-size: 0.9em;
-  font-weight: 500;
-  line-height: 140%;
-}
-
-.nav-item a.nav-link:hover {
-  background-color: var(--bs-gray-light);
-  color: var(--bs-primary);
-}
-
-.nav-item a.nav-link:active,
-.nav-item a.nav-link:focus {
-  color: var(--bs-primary);
-}
-
-.nav-item a.nav-link.active {
-  background-color: var(--bs-primary);
-  color: #fff;
-}
+/* Эти стили перемещены в Header.css */

@@ -1,0 +1,79 @@
+/* Стили для компонента предварительного просмотра почасовых данных */
+
+.hourly-consumption-preview .table thead th {
+  background-color: #f0f4f8;
+  font-weight: 600;
+  border: 1px solid #dee2e6;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  padding: 8px 12px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  color: #2c3e50;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.hourly-consumption-preview .table thead th:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  box-shadow: 0 2px 5px rgba(25, 118, 210, 0.2);
+  cursor: pointer;
+}
+
+.hourly-consumption-preview .table thead th:first-child {
+  background-color: #e6e9ed;
+  font-weight: 700;
+  position: sticky;
+  left: 0;
+  z-index: 20;
+}
+
+.hourly-consumption-preview .table thead th:first-child:hover {
+  background-color: #d4e6f9;
+}
+
+.hourly-consumption-preview .table tbody td:first-child {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  z-index: 5;
+}
+
+.hourly-consumption-preview .table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.hourly-consumption-preview .table-responsive {
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+/* Стилизация четных и нечетных строк для лучшей читаемости */
+.hourly-consumption-preview .table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.hourly-consumption-preview .table tbody tr:nth-child(even) {
+  background-color: #f9fafc;
+}
+
+/* Эффект при наведении на строку */
+.hourly-consumption-preview .table tbody tr:hover {
+  background-color: #f5f9ff;
+}
+
+/* Выделение ячеек с данными */
+.hourly-consumption-preview .table tbody td.has-value {
+  color: #333;
+  font-weight: 500;
+}
+
+.hourly-consumption-preview .table tbody td.no-value {
+  color: #ccc;
+}

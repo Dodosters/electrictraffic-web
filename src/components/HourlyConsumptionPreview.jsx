@@ -1,5 +1,5 @@
 import React from 'react';
-import './HourlyConsumptionTable.css';
+import './HourlyConsumptionPreview.css';
 
 const HourlyConsumptionPreview = ({ data, onCalculate }) => {
   if (!data || !data.days || data.days.length === 0) {
@@ -14,7 +14,11 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
   // Подготовим заголовки часов
   const hourHeaders = [];
   for (let hour = 1; hour <= 24; hour++) {
-    hourHeaders.push(<th key={`hour-${hour}`}>{hour}</th>);
+    hourHeaders.push(
+      <th key={`hour-${hour}`} title={`Час ${hour}:00`}>
+        {hour}
+      </th>
+    );
   }
 
   // Форматирование чисел
@@ -35,8 +39,8 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
           </div>
           
           <div className="table-responsive">
-            <table className="table table-sm table-bordered">
-              <thead className="table-light">
+            <table className="table table-bordered">
+              <thead>
                 <tr>
                   <th>Дата</th>
                   {hourHeaders}
@@ -45,12 +49,16 @@ const HourlyConsumptionPreview = ({ data, onCalculate }) => {
               <tbody>
                 {displayDays.map((day, index) => (
                   <tr key={`day-${index}`}>
-                    <td className="fw-bold">{day}</td>
+                    <td>{day}</td>
                     {Array.from({ length: 24 }, (_, hourIndex) => {
                       const hour = hourIndex + 1;
                       const consumption = data.hoursData[day]?.[hour] || 0;
                       return (
-                        <td key={`consumption-${day}-${hour}`} className={consumption > 0 ? "text-end" : "text-end text-muted"}>
+                        <td 
+                          key={`consumption-${day}-${hour}`} 
+                          className={consumption > 0 ? "text-end has-value" : "text-end no-value"}
+                          title={`${day}, ${hour}:00: ${consumption > 0 ? formatConsumption(consumption) : "Нет данных"} кВтч`}
+                        >
                           {consumption > 0 ? formatConsumption(consumption) : "-"}
                         </td>
                       );
