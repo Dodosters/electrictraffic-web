@@ -38,6 +38,7 @@
   border-radius: 18px;
   max-width: 80%;
   line-height: 1.5;
+  white-space: pre-line; /* Сохраняем переносы строк */
 }
 
 .message.user .message-content {
@@ -135,6 +136,22 @@
 .input-group .btn {
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+/* Стили для контейнера инструмента прогнозирования */
+.forecast-tool-container {
+  padding: 0 20px;
+  max-width: 100%;
+}
+
+.forecast-uploader .card {
+  border: none;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.forecast-uploader .card-header {
+  background-color: rgba(13, 110, 253, 0.05);
+  border-bottom: 1px solid rgba(13, 110, 253, 0.1);
 }
 
 /* Медиа-запросы для адаптивности */

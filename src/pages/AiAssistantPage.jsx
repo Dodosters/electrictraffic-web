@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './AiAssistantPage.css';
+import ForecastUploader from '../components/ForecastUploader';
 
 const AiAssistantPage = () => {
   const [message, setMessage] = useState('');
@@ -7,6 +8,21 @@ const AiAssistantPage = () => {
     { role: 'assistant', content: 'Здравствуйте! Я ваш AI-помощник по вопросам электроэнергии и тарифов. Чем я могу вам помочь сегодня?' }
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showForecastTool, setShowForecastTool] = useState(false);
+
+  const handleForecastComplete = (data) => {
+    // Add a message to the chat when forecast is completed
+    const summaryMessage = {
+      role: 'assistant',
+      content: `Прогноз потребления электроэнергии успешно создан! 
+      \nПрогноз на ${data.forecast.length} месяцев показывает среднее потребление ${
+        (data.forecast.reduce((sum, item) => sum + item.prediction, 0) / data.forecast.length).toFixed(2)
+      } единиц.
+      \nВы можете изучить детальные результаты, графики и скачать данные в окне ниже.`
+    };
+    
+    setChatHistory(prev => [...prev, summaryMessage]);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,13 +38,28 @@ const AiAssistantPage = () => {
     // Имитируем загрузку ответа от AI
     setIsLoading(true);
     
+    // Проверяем, запрашивает ли пользователь прогноз
+    const userQuery = message.toLowerCase();
+    const forecastKeywords = [
+      'прогноз', 'предсказ', 'предиктивный', 
+      'будущее потребление', 'спрогнозиру', 'forecast', 
+      'предскаж', 'спрогноз', 'predict'
+    ];
+    
+    const isForecastRequest = forecastKeywords.some(keyword => userQuery.includes(keyword));
+    
     // Имитация задержки ответа
     setTimeout(() => {
       // Примеры ответов в зависимости от запроса пользователя
       let assistantResponse;
-      const userQuery = message.toLowerCase();
       
-      if (userQuery.includes('тариф') || userQuery.includes('цена') || userQuery.includes('стоимость')) {
+      if (isForecastRequest) {
+        assistantResponse = {
+          role: 'assistant',
+          content: 'Я могу помочь вам с прогнозированием потребления электроэнергии на основе исторических данных. Для этого вам нужно загрузить CSV-файл с историей потребления по месяцам (колонки year, month, volume). Я подготовил инструмент для загрузки данных и создания прогноза ниже.'
+        };
+        setShowForecastTool(true);
+      } else if (userQuery.includes('тариф') || userQuery.includes('цена') || userQuery.includes('стоимость')) {
         assistantResponse = {
           role: 'assistant',
           content: 'Тарифы на электроэнергию различаются в зависимости от региона и типа потребителя. В нашем сервисе вы можете рассчитать точную стоимость в разделе "Тарифный калькулятор". Для физических лиц обычно доступны одноставочный и многозонный тарифы. Для юридических лиц тарификация более сложная и учитывает множество факторов.'
@@ -48,10 +79,15 @@ const AiAssistantPage = () => {
           role: 'assistant',
           content: 'Здравствуйте! Рад вас видеть. Я готов ответить на ваши вопросы об электроэнергии, тарифах и услугах нашего сервиса. Чем могу помочь?'
         };
+      } else if (userQuery.includes('прогноз') && !isForecastRequest) {
+        assistantResponse = {
+          role: 'assistant',
+          content: 'Если вы интересуетесь прогнозом потребления электроэнергии, я могу помочь вам создать такой прогноз на основе исторических данных. Просто напишите "Сделать прогноз потребления" или "Создать прогноз", и я предоставлю вам инструмент для загрузки данных.'
+        };
       } else {
         assistantResponse = {
           role: 'assistant',
-          content: 'Спасибо за ваш вопрос. Я могу предоставить информацию о тарифах на электроэнергию, помочь с выбором оптимального тарифа, рассказать о способах экономии и дать рекомендации по энергоэффективности. Если у вас есть более конкретный вопрос, пожалуйста, уточните его, и я постараюсь помочь.'
+          content: 'Спасибо за ваш вопрос. Я могу предоставить информацию о тарифах на электроэнергию, помочь с выбором оптимального тарифа, рассказать о способах экономии и дать рекомендации по энергоэффективности. Также я могу помочь вам с прогнозированием потребления электроэнергии. Если у вас есть более конкретный вопрос, пожалуйста, уточните его, и я постараюсь помочь.'
         };
       }
       
@@ -97,6 +133,12 @@ const AiAssistantPage = () => {
             )}
           </div>
           
+          {showForecastTool && (
+            <div className="forecast-tool-container mt-4 mb-4">
+              <ForecastUploader onForecastComplete={handleForecastComplete} />
+            </div>
+          )}
+          
           <form className="chat-input-form" onSubmit={handleSubmit}>
             <div className="input-group">
               <input
@@ -123,7 +165,7 @@ const AiAssistantPage = () => {
         <div className="assistant-features mt-5">
           <h2 className="h4 mb-4">Возможности AI-помощника</h2>
           <div className="row g-4">
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="feature-card">
                 <div className="feature-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
@@ -139,7 +181,7 @@ const AiAssistantPage = () => {
               </div>
             </div>
             
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="feature-card">
                 <div className="feature-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
@@ -154,7 +196,7 @@ const AiAssistantPage = () => {
               </div>
             </div>
             
-            <div className="col-md-4">
+            <div className="col-md-3">
               <div className="feature-card">
                 <div className="feature-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
@@ -165,6 +207,21 @@ const AiAssistantPage = () => {
                 <p>
                   Практические рекомендации, которые помогут
                   снизить потребление электроэнергии и сэкономить деньги.
+                </p>
+              </div>
+            </div>
+            
+            <div className="col-md-3">
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 0h1v15h15v1H0V0Zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5Z"/>
+                  </svg>
+                </div>
+                <h3>Прогнозирование потребления</h3>
+                <p>
+                  Создание прогнозов потребления электроэнергии
+                  на основе исторических данных для планирования расходов.
                 </p>
               </div>
             </div>
