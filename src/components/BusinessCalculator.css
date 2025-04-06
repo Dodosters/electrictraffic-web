@@ -55,20 +55,61 @@
   border-color: #000;
 }
 
-.result-cost {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: var(--bs-primary);
-  color: white;
-  padding: 1rem;
-  border-radius: 6px;
-  margin-top: 1rem;
-  font-size: 1.25rem;
-  font-weight: 500;
+/* Стили для таблицы результатов */
+.results-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 }
 
-.cost-value {
-  font-size: 1.5rem;
-  font-weight: 700;
+.results-container h4 {
+  color: var(--bs-primary);
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dee2e6;
+}
+
+.table-responsive {
+  margin: 15px 0;
+}
+
+.table-bordered {
+  border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,0,0,.02);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(0,0,0,.05);
+}
+
+.table-primary, 
+.table-primary > th, 
+.table-primary > td {
+  background-color: var(--bs-primary);
+  color: white;
+}
+
+.table th, .table td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.fw-bold {
+  font-weight: bold;
+}
+
+/* Стили для блока рекомендаций */
+.results-container .bg-light {
+  background-color: #e9ecef !important;
+  border-left: 4px solid var(--bs-primary);
+}
+
+.results-container h5 {
+  color: var(--bs-primary);
 }

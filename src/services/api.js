@@ -82,12 +82,27 @@ export const api = {
   // Calculator functions
   calculateBusinessElectricityCost: async (params) => {
     try {
+      // Ensure all required parameters are provided according to CalculateBusinessRequest model
+      const requestBody = {
+        region: params.region,
+        consumption: params.consumption,
+        power_tarif: params.power_tarif,
+        day_consumption: params.day_consumption,
+        night_consumption: params.night_consumption,
+        cost_of_energy: params.cost_of_energy,
+        real_volume: params.real_volume,
+        real_average_power: params.real_average_power,
+        real_average_power_broadcast: params.real_average_power_broadcast
+      };
+      
+      console.log('Sending calculation request with params:', requestBody);
+      
       const response = await fetch(`${API_BASE_URL}/calculate/business`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(params),
+        body: JSON.stringify(requestBody),
       });
       return await response.json();
     } catch (error) {

@@ -95,8 +95,8 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
 
   // Обработка нажатия кнопки "Рассчитать"
   const handleCalculate = async () => {
-    if (!parsedData || !file) {
-      setError('Ошибка: нет данных для расчета');
+    if (!file) {
+      setError('Ошибка: не выбран файл для расчета');
       return;
     }
     
@@ -104,18 +104,51 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
     setError(null);
     
     try {
-      // Создаем CSV-строку на основе обработанных данных для отправки в API
-      const csvData = convertParsedDataToCsv(parsedData);
+      // Напрямую отправляем файл на обработку (не конвертируя в CSV)
+      // Используем chart-data API для получения почасовых данных
+      const chartDataResponse = await api.getChartData(file, 'hourly');
       
-      // Отправляем данные на обработку через API
-      const response = await api.processHourlyConsumption(csvData, 'Ростов-на-Дону');
-      
-      if (!response.success) {
-        throw new Error(response.error || 'Ошибка обработки данных');
+      if (!chartDataResponse || !chartDataResponse.series || chartDataResponse.series.length === 0) {
+        throw new Error('Не удалось получить данные из файла');
       }
       
+      // Формируем данные в нужном формате для HourlyConsumptionPage
+      const processedData = {
+        hourlyData: chartDataResponse.series.map(daySeries => {
+          const date = daySeries.date;
+          const hours = {};
+          
+          // Формируем часовые данные
+          daySeries.points.forEach(point => {
+            const hour = point.hour + 1; // Преобразуем 0-23 в 1-24
+            hours[hour] = {
+              consumption: point.value,
+              rate: 5.5, // Базовая ставка (можно изменить)
+              zone: getZoneByHour(hour),
+              cost: point.value * 5.5
+            };
+          });
+          
+          // Рассчитываем итоговую стоимость за день
+          const dailyTotal = Object.values(hours).reduce((sum, h) => sum + h.cost, 0);
+          
+          return {
+            date: date,
+            hours: hours,
+            hoursCost: hours,
+            dailyTotal: dailyTotal
+          };
+        }),
+        hourlyRates: generateHourlyRates(),
+        zoneTariffs: {
+          peak: 7.2,
+          semiPeak: 5.5,
+          night: 3.8
+        }
+      };
+      
       // Передаем обработанные данные вызывающему компоненту
-      onDataLoaded(response.data);
+      onDataLoaded(processedData);
       
       setCalculating(false);
     } catch (err) {
@@ -128,30 +161,43 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
     }
   };
   
-  // Преобразование данных предпросмотра в CSV для API расчета
-  const convertParsedDataToCsv = (parsedData) => {
-    if (!parsedData || !parsedData.days || parsedData.days.length === 0) {
-      return '';
+  // Вспомогательная функция для определения зоны по часу
+  const getZoneByHour = (hour) => {
+    // Пиковые часы (8-11 и 16-21)
+    if ((hour >= 8 && hour <= 11) || (hour >= 16 && hour <= 21)) {
+      return 'Пик';
     }
+    // Ночные часы (23-7)
+    else if (hour >= 23 || (hour >= 1 && hour <= 7)) {
+      return 'Ночь';
+    }
+    // Полупиковые часы (все остальные)
+    else {
+      return 'Полупик';
+    }
+  };
+  
+  // Генерация почасовых ставок для всех часов
+  const generateHourlyRates = () => {
+    const rates = {};
     
-    // Создаем строки CSV
-    const csvRows = [];
-    
-    // Заголовок 
-    csvRows.push('Дата;Час;Потребление');
-    
-    // Данные
-    for (const day of parsedData.days) {
-      for (let hour = 1; hour <= 24; hour++) {
-        const consumption = parsedData.hoursData[day][hour];
-        if (consumption > 0) {
-          // Заменяем точку на запятую для русскоязычного формата CSV
-          csvRows.push(`${day};${hour};${consumption.toString().replace('.', ',')}`);
-        }
+    for (let hour = 1; hour <= 24; hour++) {
+      const zone = getZoneByHour(hour);
+      let rate = 5.5; // Базовая ставка (полупик)
+      
+      if (zone === 'Пик') {
+        rate = 7.2;
+      } else if (zone === 'Ночь') {
+        rate = 3.8;
       }
+      
+      rates[hour] = {
+        rate: rate,
+        zone: zone
+      };
     }
     
-    return csvRows.join('\n');
+    return rates;
   };
 
   return (
@@ -168,7 +214,7 @@ const HourlyConsumptionUploader = ({ onDataLoaded }) => {
           )}
           
           <div className="mb-3">
-            <label htmlFor="csv-file" className="form-label">Выберите CSV файл с почасовыми данными потребления</label>
+            <label htmlFor="excel-file" className="form-label">Выберите Excel-файл с почасовыми данными потребления</label>
             <input 
               type="file" 
               className="form-control" 
