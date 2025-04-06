@@ -3,6 +3,7 @@ import FirstCategoryTab from './tabs/FirstCategoryTab';
 import SecondCategoryTab from './tabs/SecondCategoryTab';
 import ThirdCategoryTab from './tabs/ThirdCategoryTab';
 import FourthCategoryTab from './tabs/FourthCategoryTab';
+import HourlyZoneEditor from './components/HourlyZoneEditor';
 
 function TabPanel({ children, value, index }) {
   return (
@@ -33,6 +34,9 @@ const AdminPage = () => {
       <div className="card">
         <div className="card-body">
           <h1 className="card-title mb-4">Админ-панель управления коэффициентами</h1>
+          
+          {/* Добавляем редактор часовых зон в верхнюю часть админ-панели */}
+          <HourlyZoneEditor />
           
           <ul className="nav nav-tabs" role="tablist">
             <li className="nav-item" role="presentation">
