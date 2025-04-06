@@ -144,13 +144,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      <section id="slog" className="py-5 text-center">
-        <div className="container">
-          <p className="mx-auto">
-            Экономия начинается с информации
-          </p>
-        </div>
-      </section>
     </div>
   );
 };
