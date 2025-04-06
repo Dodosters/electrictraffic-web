@@ -11,6 +11,7 @@ import FaqPage from './pages/FaqPage';
 import NewsPage from './pages/NewsPage';
 import HourlyConsumptionPage from './pages/HourlyConsumptionPage';
 import AiAssistantPage from './pages/AiAssistantPage';
+import AdminPage from './pages/Admin/AdminPage';
 import './App.css';
 import './styles/ButtonOverride.css';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/news" element={<NewsPage />} />
             <Route path="/hourly" element={<HourlyConsumptionPage />} />
             <Route path="/ai-assistant" element={<AiAssistantPage />} />
+            <Route path="/admin" element={<AdminPage />} />
           </Routes>
         </main>
         <Footer />
