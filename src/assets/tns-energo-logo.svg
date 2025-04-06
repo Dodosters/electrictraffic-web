@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 532 238">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4caf50;stop-opacity:1" />
+      <stop offset="33%" style="stop-color:#00796b;stop-opacity:1" />
+      <stop offset="66%" style="stop-color:#0288d1;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a237e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <g>
+    <path fill="url(#grad1)" d="M35 0 L120 0 L90 100 L180 100 L135 220 L35 170 Z" />
+    <path fill="#f2f2f2" d="M250 30 L300 30 L295 60 L350 60 L345 90 L290 90 L285 120 L350 120 L345 150 L230 150 Z" />
+    <path fill="#f2f2f2" d="M365 30 L445 30 L440 60 L400 60 L395 90 L435 90 L430 120 L390 120 L385 150 L345 150 Z" />
+    <path fill="#f2f2f2" d="M470 30 C495 30, 525 40, 515 80 C505 120, 465 130, 440 130 C415 130, 395 110, 405 70 C415 30, 445 30, 470 30 Z M465 60 C455 60, 445 65, 440 85 C435 105, 440 110, 450 110 C460 110, 475 100, 480 80 C485 60, 475 60, 465 60 Z" />
+    <path fill="#f2f2f2" opacity="0.7" d="M250 170 L282 170 L278 190 L320 190 L315 210 L275 210 L272 230 L320 230 L315 250 L235 250 Z" />
+    <path fill="#f2f2f2" opacity="0.7" d="M330 170 L380 170 L375 190 L350 190 L346 210 L370 210 L365 230 L340 230 L336 250 L310 250 Z" />
+    <path fill="#f2f2f2" opacity="0.7" d="M390 170 L420 170 L410 220 L440 220 L435 250 L375 250 Z" />
+    <path fill="#f2f2f2" opacity="0.7" d="M450 170 L502 170 L498 190 L475 190 L470 250 L445 250 L450 190 L425 190 Z" />
+    <path fill="#f2f2f2" opacity="0.7" d="M510 170 L530 170 L510 250 L490 250 Z" />
+  </g>
+</svg>

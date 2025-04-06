@@ -30,15 +30,15 @@ const HomePage = () => {
 
           <div className="row justify-content-center gy-4">
             <div className="col-md-4">
-              <Link to="/fiz" className="calc-card d-block text-decoration-none p-4">
+              <Link to="/analytics" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
-                    <path fill="var(--bs-primary)" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    <path fill="var(--bs-primary)" d="M22,21H2V3H4V19H6V10H10V19H12V6H16V19H18V14H22V21Z" />
                   </svg>
-                  <h3 className="h5 mb-0 primary-c">Для физических лиц</h3>
+                  <h3 className="h5 mb-0 primary-c">Аналитика</h3>
                 </div>
                 <p className="text-muted mb-0">
-                  Расчет стоимости электроэнергии для жилых помещений с учетом льготных тарифов
+                  Статистика и сравнение тарифов между городами Ростовской области с визуализацией данных
                 </p>
               </Link>
             </div>
