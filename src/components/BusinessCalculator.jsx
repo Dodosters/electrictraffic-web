@@ -3,7 +3,8 @@ import { api } from '../services/api';
 import './BusinessCalculator.css';
 
 const BusinessCalculator = ({ tariffs }) => {
-  const [region, setRegion] = useState('');
+  // Устанавливаем фиксированный регион вместо выбора
+  const region = "Ростовская область";
   const [consumption, setConsumption] = useState('');
   const [powerTariff, setPowerTariff] = useState('VN');
   const [result, setResult] = useState(null);
@@ -91,7 +92,7 @@ const BusinessCalculator = ({ tariffs }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    if (!region || !consumption) {
+    if (!consumption) {
       setError('Пожалуйста, заполните все необходимые поля');
       return;
     }
@@ -162,7 +163,7 @@ const BusinessCalculator = ({ tariffs }) => {
       
       // Отправляем запрос на API с нужными параметрами
       const requestParams = {
-        region,
+        region, // Используем фиксированный регион
         consumption: totalConsumption,
         power_tarif: powerTariff,
         day_consumption: dayConsumption,
@@ -206,6 +207,9 @@ const BusinessCalculator = ({ tariffs }) => {
       <div className="card calculator-card">
         <div className="card-header calculator-header">
           <h3 className="card-title">Расчет стоимости электроэнергии</h3>
+          <div className="text-center mb-2">
+            <span className="badge bg-primary text-light">Регион: {region}</span>
+          </div>
         </div>
         <div className="card-body">
           {error && (
@@ -216,24 +220,6 @@ const BusinessCalculator = ({ tariffs }) => {
           
           <form onSubmit={handleSubmit}>
             <div className="row mb-3">
-              <div className="col-md-6">
-                <label htmlFor="region" className="form-label">Город</label>
-                <select 
-                  id="region"
-                  className="form-select"
-                  value={region}
-                  onChange={(e) => setRegion(e.target.value)}
-                  required
-                >
-                  <option value="">Выберите город</option>
-                  {tariffs.map(tariff => (
-                    <option key={tariff.id} value={tariff.region}>
-                      {tariff.region}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              
               <div className="col-md-6">
                 <label htmlFor="powerTariff" className="form-label">Тарифная мощность</label>
                 <select 
@@ -249,9 +235,7 @@ const BusinessCalculator = ({ tariffs }) => {
                   <option value="NN">NN - Низкое напряжение</option>
                 </select>
               </div>
-            </div>
             
-            <div className="row mb-3">
               <div className="col-md-6">
                 <label htmlFor="consumption" className="form-label">Объем потребления (кВтч)</label>
                 <input 
@@ -265,8 +249,10 @@ const BusinessCalculator = ({ tariffs }) => {
                   required
                 />
               </div>
-              
-              <div className="col-md-6">
+            </div>
+            
+            <div className="row mb-3">
+              <div className="col-12">
                 <label htmlFor="excel-file" className="form-label">Загрузить файл почасового потребления</label>
                 <input
                   type="file"
@@ -307,16 +293,23 @@ const BusinessCalculator = ({ tariffs }) => {
           
           {result && (
             <div className="mt-4 p-3 rounded results-container">
-              <h4 className="mb-3">Результаты расчета:</h4>
+              <h4 className="mb-3 text-center">Результаты расчета</h4>
               
               <div className="row mb-3">
                 <div className="col-md-6">
-                  <p><strong>Город:</strong> {result.region}</p>
-                  <p><strong>Потребление:</strong> {result.consumption} кВтч</p>
+                  <div className="info-card p-3 rounded mb-3">
+                    <h5>Параметры расчета</h5>
+                    <p><strong>Регион:</strong> {result.region}</p>
+                    <p><strong>Потребление:</strong> {result.consumption} кВтч</p>
+                    <p><strong>Тарифная мощность:</strong> {powerTariff}</p>
+                    <p><strong>Валюта:</strong> {result.currency}</p>
+                  </div>
                 </div>
                 <div className="col-md-6">
-                  <p><strong>Тарифная мощность:</strong> {powerTariff}</p>
-                  <p><strong>Валюта:</strong> {result.currency}</p>
+                  <div className="info-card p-3 rounded">
+                    <h5>Рекомендация</h5>
+                    <p>{getRecommendation(result)}</p>
+                  </div>
                 </div>
               </div>
               
@@ -352,13 +345,6 @@ const BusinessCalculator = ({ tariffs }) => {
                     </tr>
                   </tbody>
                 </table>
-              </div>
-              
-              <div className="mt-3 p-3 bg-light rounded">
-                <h5 className="mb-2">Рекомендации:</h5>
-                <p>
-                  {getRecommendation(result)}
-                </p>
               </div>
             </div>
           )}

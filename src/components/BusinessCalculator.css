@@ -14,12 +14,22 @@
   color: white;
   border-radius: 10px 10px 0 0 !important;
   padding: 1.5rem;
+  text-align: center;
 }
 
 .calculator-header h3 {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.calculator-header .badge {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 400;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 .form-label {
@@ -33,6 +43,7 @@
   border-radius: 6px;
   padding: 0.75rem;
   border: 1px solid #ced4da;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
 }
 
 .form-select:focus,
@@ -48,11 +59,14 @@
   font-weight: 500;
   border-radius: 6px;
   transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .btn-primary:hover {
   background-color: #000;
   border-color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0,0,0,0.15);
 }
 
 /* Стили для таблицы результатов */
@@ -64,8 +78,24 @@
 
 .results-container h4 {
   color: var(--bs-primary);
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   border-bottom: 1px solid #dee2e6;
+  font-weight: 600;
+}
+
+.info-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  height: 100%;
+}
+
+.info-card h5 {
+  color: var(--bs-primary);
+  margin-bottom: 15px;
+  font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
 }
 
 .table-responsive {
@@ -74,6 +104,8 @@
 
 .table-bordered {
   border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
@@ -112,4 +144,14 @@
 
 .results-container h5 {
   color: var(--bs-primary);
+}
+
+/* Добавляем анимацию появления результата */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.results-container {
+  animation: fadeIn 0.4s ease-out forwards;
 }
