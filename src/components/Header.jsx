@@ -50,7 +50,6 @@ const Header = () => {
                 </a>
                 <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
                   <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                  <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                   <li><hr className="dropdown-divider" /></li>
                   <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                 </ul>
@@ -118,7 +117,6 @@ const Header = () => {
                   </a>
                   <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
                     <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                    <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                   </ul>

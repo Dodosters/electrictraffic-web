@@ -10,7 +10,7 @@ const HomePage = () => {
           <div className="row align-items-center">
             <div className="col-md-6 hero-img"></div>
             <div className="col-md-6">
-              <h1>ТНС - Ростовская область</h1>
+              <h1>ТНС Энерго - Ростовская область</h1>
               <span className="hero-span">
                 Цифровой сервис, объединивший всю необходимую информацию о ценах и тарифах на электрическую энергию в городах Ростовской области
               </span>
