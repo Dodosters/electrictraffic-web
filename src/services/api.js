@@ -201,7 +201,7 @@ export const api = {
   // FAQ endpoints
   getFAQs: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/faqs`);
+      const response = await fetch(`${API_BASE_URL}/get_faqs`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching FAQs:', error);
@@ -212,7 +212,7 @@ export const api = {
   // News endpoints
   getNews: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/news`);
+      const response = await fetch(`${API_BASE_URL}/get_news`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching news:', error);
@@ -222,7 +222,7 @@ export const api = {
   
   getNewsById: async (id) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/news/${id}`);
+      const response = await fetch(`${API_BASE_URL}/get_news/${id}`);
       return await response.json();
     } catch (error) {
       console.error(`Error fetching news with ID ${id}:`, error);
