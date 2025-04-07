@@ -30,21 +30,21 @@ const HomePage = () => {
 
           <div className="row justify-content-center gy-4">
             <div className="col-md-4">
-              <Link to="/fiz" className="calc-card d-block text-decoration-none p-4">
+              <Link to="/analytics" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
-                    <path fill="var(--bs-primary)" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" />
+                    <path fill="var(--bs-primary)" d="M3,22V8H7V22H3M10,22V2H14V22H10M17,22V14H21V22H17Z" />
                   </svg>
-                  <h3 className="h5 mb-0 primary-c">Для физических лиц</h3>
+                  <h3 className="h5 mb-0 primary-c">Аналитика</h3>
                 </div>
                 <p className="text-muted mb-0">
-                  Расчет стоимости электроэнергии для жилых помещений с учетом льготных тарифов
+                  Анализ и сравнение тарифов между городами Ростовской области, отслеживание динамики изменения цен
                 </p>
               </Link>
             </div>
             
             <div className="col-md-4">
-              <Link to="/hourly" className="calc-card d-block text-decoration-none p-4">
+              <Link to="/ur" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
                     <path fill="var(--bs-primary)" d="M12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22C6.47,22 2,17.5 2,12A10,10 0 0,1 12,2M12.5,7V12.25L17,14.92L16.25,16.15L11,13V7H12.5Z" />

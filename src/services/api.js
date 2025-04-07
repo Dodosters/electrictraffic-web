@@ -1,14 +1,14 @@
-// ETariff API service connecting to the FastAPI backend
+// ТНС-энерго API service connecting to the FastAPI backend
 
 // Base URL for the API
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://193.33.153.200';
 
 // API endpoints
 export const api = {
   // Business tariffs
   getBusinessTariffs: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/business-tariffs`);
+      const response = await fetch(`${API_BASE_URL}/get_business-tariffs`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching business tariffs:', error);
@@ -18,7 +18,7 @@ export const api = {
   
   getBusinessTariffsByRegion: async (region) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/business-tariffs/${encodeURIComponent(region)}`);
+      const response = await fetch(`${API_BASE_URL}/get_business-tariffs/${encodeURIComponent(region)}`);
       return await response.json();
     } catch (error) {
       console.error(`Error fetching business tariffs for region ${region}:`, error);
@@ -29,7 +29,7 @@ export const api = {
   // Personal tariffs
   getPersonalTariffs: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/personal-tariffs`);
+      const response = await fetch(`${API_BASE_URL}/get_personal-tariffs`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching personal tariffs:', error);
@@ -39,7 +39,7 @@ export const api = {
   
   getPersonalTariffsByRegion: async (region) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/personal-tariffs/${encodeURIComponent(region)}`);
+      const response = await fetch(`${API_BASE_URL}/get_personal-tariffs/${encodeURIComponent(region)}`);
       return await response.json();
     } catch (error) {
       console.error(`Error fetching personal tariffs for region ${region}:`, error);
@@ -50,7 +50,7 @@ export const api = {
   // Energy providers
   getProviders: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/providers`);
+      const response = await fetch(`${API_BASE_URL}/get_providers`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching providers:', error);
@@ -60,7 +60,7 @@ export const api = {
   
   getProviderById: async (id) => {
     try {
-      const response = await fetch(`${API_BASE_URL}/providers/${id}`);
+      const response = await fetch(`${API_BASE_URL}/get_providers/${id}`);
       return await response.json();
     } catch (error) {
       console.error(`Error fetching provider with ID ${id}:`, error);
@@ -71,7 +71,7 @@ export const api = {
   // Analytics
   getAnalyticsData: async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/analytics`);
+      const response = await fetch(`${API_BASE_URL}/get_analytics`);
       return await response.json();
     } catch (error) {
       console.error('Error fetching analytics data:', error);
@@ -97,7 +97,7 @@ export const api = {
       
       console.log('Sending calculation request with params:', requestBody);
       
-      const response = await fetch(`${API_BASE_URL}/calculate/business`, {
+      const response = await fetch(`${API_BASE_URL}/get_calculate/business`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
