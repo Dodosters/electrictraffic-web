@@ -30,7 +30,7 @@ const formatCoefficientsData = (data) => {
 // Fetch all coefficients
 export const getAllCoefficients = async () => {
   try {
-    const response = await fetch(`${API_URL}/coefficients`);
+    const response = await fetch(`${API_URL}/get_coefficients`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -44,7 +44,7 @@ export const getAllCoefficients = async () => {
 // Fetch first category coefficients
 export const getFirstCategoryCoefficients = async () => {
   try {
-    const response = await fetch(`${API_URL}/coefficients/first_category`);
+    const response = await fetch(`${API_URL}/get_coefficients/first_category`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -87,7 +87,7 @@ export const updateFirstCategoryCoefficients = async (data) => {
 // Fetch second category coefficients
 export const getSecondCategoryCoefficients = async () => {
   try {
-    const response = await fetch(`${API_URL}/coefficients/second_category`);
+    const response = await fetch(`${API_URL}/get_coefficients/second_category`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -130,7 +130,7 @@ export const updateSecondCategoryCoefficients = async (data) => {
 // Fetch third category coefficients
 export const getThirdCategoryCoefficients = async () => {
   try {
-    const response = await fetch(`${API_URL}/coefficients/third_category`);
+    const response = await fetch(`${API_URL}/get_coefficients/third_category`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }
@@ -173,7 +173,7 @@ export const updateThirdCategoryCoefficients = async (data) => {
 // Fetch fourth category coefficients
 export const getFourthCategoryCoefficients = async () => {
   try {
-    const response = await fetch(`${API_URL}/coefficients/four_category`);
+    const response = await fetch(`${API_URL}/get_coefficients/four_category`);
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`);
     }

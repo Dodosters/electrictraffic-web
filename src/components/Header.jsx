@@ -21,7 +21,7 @@ const Header = () => {
         <div className="container-fluid glass main-nav"></div>
         <div className="container-sm d-flex justify-content-center">
           <Link className="navbar-brand d-md-none" to="/">
-            <img style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
+            <img style={{ width: '110px' }} src={logo} alt="Логотип ТНС" className="nav-logo" />
           </Link>
           <button className="navbar-toggler" type="button" onClick={toggleNav}>
             <span className="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@ const Header = () => {
             <ul className="navbar-nav mx-auto align-items-center">
               <li className="nav-item logo-item d-none d-md-block">
                 <Link className="navbar-brand" to="/">
-                  <img style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo" />
+                  <img style={{ width: '110px' }} src={logo} alt="Логотип ТНС" className="nav-logo" />
                 </Link>
               </li>
               <li className="nav-item">
@@ -97,7 +97,7 @@ const Header = () => {
 
           <div className={`offcanvas offcanvas-end glass offcanvas-navbar d-md-none ${isNavExpanded ? 'show' : ''}`}>
             <div className="offcanvas-header">
-              <img width="110" style={{ width: '110px' }} src={logo} alt="Логотип Etarif" className="nav-logo mx-auto" />
+              <img width="110" style={{ width: '110px' }} src={logo} alt="Логотип ТНС" className="nav-logo mx-auto" />
               <button type="button" className="btn-close btn-close-dark" onClick={closeNav}></button>
             </div>
             <div className="offcanvas-body">

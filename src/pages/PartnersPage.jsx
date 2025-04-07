@@ -12,7 +12,7 @@ const PartnersPage = () => {
         
         <p className="text-center mb-5">
           Интегрируйте данные о тарифах на электроэнергию в ваши продукты и сервисы с помощью нашего API
-          или станьте партнером Etarif и предоставляйте актуальные данные для наших пользователей.
+          или станьте партнером ТНС-энерго и предоставляйте актуальные данные для наших пользователей.
         </p>
         
         <div className="row">
@@ -163,7 +163,7 @@ const PartnersPage = () => {
                       <pre>
                         <code>
                           {`// Пример запроса получения тарифов для населения
-fetch("https://api.etarif.ru/personal-tariffs", {
+fetch("https://api.tns.ru/personal-tariffs", {
   headers: {
     "X-API-Key": "YOUR_API_KEY"
   }
@@ -178,7 +178,7 @@ const hourlyData = {
   region: "Ростов-на-Дону"
 };
 
-fetch("https://api.etarif.ru/process-hourly-consumption-string", {
+fetch("https://api.tns.ru/process-hourly-consumption-string", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -244,7 +244,7 @@ fetch("https://api.etarif.ru/process-hourly-consumption-string", {
                       примеры кода и консультации по техническим вопросам.
                     </p>
                     <p>
-                      Для получения технической поддержки напишите нам на <a href="mailto:api@etarif.ru">api@etarif.ru</a>.
+                      Для получения технической поддержки напишите нам на <a href="mailto:api@etarif.ru">api@tns.ru</a>.
                     </p>
                   </div>
                 </div>
@@ -350,7 +350,7 @@ fetch("https://api.etarif.ru/process-hourly-consumption-string", {
                 <div className="tab-pane fade show active">
                   <h2 className="subhead-api mb-4">Партнерская программа</h2>
                   <p>
-                    Станьте партнером Etarif и получайте комиссию за привлеченных клиентов или предоставляйте нам
+                    Станьте партнером ТНС-энерго и получайте комиссию за привлеченных клиентов или предоставляйте нам
                     актуальные данные о тарифах на электроэнергию.
                   </p>
                   
@@ -397,7 +397,7 @@ fetch("https://api.etarif.ru/process-hourly-consumption-string", {
                     <h3 className="h5 mb-3">Как стать партнером</h3>
                     <p>
                       Для присоединения к партнерской программе заполните форму заявки или свяжитесь с нами по электронной
-                      почте <a href="mailto:partners@etarif.ru">partners@etarif.ru</a>.
+                      почте <a href="mailto:partners@tns.ru">partners@tns.ru</a>.
                     </p>
                     <div className="mt-4">
                       <button className="btn btn-f-primary">Стать партнером</button>
