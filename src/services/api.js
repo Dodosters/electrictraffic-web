@@ -97,7 +97,7 @@ export const api = {
       
       console.log('Sending calculation request with params:', requestBody);
       
-      const response = await fetch(`${API_BASE_URL}/calculate/business`, {
+      const response = await fetch(`${API_BASE_URL}/get_calculate/business`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
