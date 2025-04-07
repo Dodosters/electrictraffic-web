@@ -6,9 +6,15 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-  // Ref для выпадающего меню
+  // Добавляем состояние для выпадающего меню
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false);
+  
+  // Refs для отслеживания кликов вне выпадающего меню
   const dropdownRef = useRef(null);
   const dropdownToggleRef = useRef(null);
+  const mobileDropdownRef = useRef(null);
+  const mobileDropdownToggleRef = useRef(null);
   
   const toggleNav = () => {
     setIsNavExpanded(!isNavExpanded);
@@ -16,65 +22,48 @@ const Header = () => {
 
   const closeNav = () => {
     setIsNavExpanded(false);
+    setIsDropdownOpen(false);
+    setIsMobileDropdownOpen(false);
   };
   
-  // Функция для ручного управления выпадающим меню
+  // Функция для переключения выпадающего меню
   const toggleDropdown = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    
-    if (dropdownRef.current && dropdownToggleRef.current) {
-      const dropdownMenu = dropdownRef.current;
-      const dropdownToggle = dropdownToggleRef.current;
-      
-      const isOpen = dropdownMenu.classList.contains('show');
-      
-      if (isOpen) {
-        dropdownMenu.classList.remove('show');
-        dropdownToggle.setAttribute('aria-expanded', 'false');
-        dropdownToggle.parentElement.classList.remove('show');
-      } else {
-        dropdownMenu.classList.add('show');
-        dropdownToggle.setAttribute('aria-expanded', 'true');
-        dropdownToggle.parentElement.classList.add('show');
-      }
-    }
+    setIsDropdownOpen(!isDropdownOpen);
   };
   
-  // Закрытие выпадающего меню при клике вне его
+  // Функция для переключения мобильного выпадающего меню
+  const toggleMobileDropdown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsMobileDropdownOpen(!isMobileDropdownOpen);
+  };
+  
+  // Обработчик для закрытия выпадающих меню при клике вне
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Для десктопного меню
       if (dropdownRef.current && 
           dropdownToggleRef.current && 
           !dropdownRef.current.contains(event.target) &&
           !dropdownToggleRef.current.contains(event.target)) {
-        dropdownRef.current.classList.remove('show');
-        dropdownToggleRef.current.setAttribute('aria-expanded', 'false');
-        dropdownToggleRef.current.parentElement.classList.remove('show');
+        setIsDropdownOpen(false);
+      }
+      
+      // Для мобильного меню
+      if (mobileDropdownRef.current && 
+          mobileDropdownToggleRef.current && 
+          !mobileDropdownRef.current.contains(event.target) &&
+          !mobileDropdownToggleRef.current.contains(event.target)) {
+        setIsMobileDropdownOpen(false);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     
-    // Инициализация Bootstrap Dropdown
-    const initBootstrapDropdown = () => {
-      if (typeof window !== 'undefined' && window.bootstrap && dropdownToggleRef.current) {
-        try {
-          const dropdown = new window.bootstrap.Dropdown(dropdownToggleRef.current);
-          console.log('Bootstrap dropdown initialized');
-        } catch (error) {
-          console.error('Failed to initialize Bootstrap dropdown:', error);
-        }
-      }
-    };
-    
-    // Инициализируем при монтировании и с небольшой задержкой
-    initBootstrapDropdown();
-    const timer = setTimeout(initBootstrapDropdown, 500);
-
     return () => {
-      document.removeEventListener('click', handleClickOutside);
-      clearTimeout(timer);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
@@ -107,22 +96,28 @@ const Header = () => {
                 </NavLink>
               </li>
             
-              <li className="nav-item dropdown">
+              {/* Собственная реализация выпадающего меню */}
+              <li className="nav-item dropdown" style={{ position: 'relative' }}>
                 <a 
                   className="nav-link dropdown-toggle" 
                   href="#" 
-                  role="button" 
                   onClick={toggleDropdown}
                   ref={dropdownToggleRef}
-                  data-bs-toggle="dropdown" 
-                  aria-expanded="false"
+                  aria-expanded={isDropdownOpen}
                 >
                   Тарифный калькулятор
                 </a>
+                {/* Используем состояние React для показа/скрытия меню */}
                 <ul 
-                  className="dropdown-menu" 
+                  className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} 
                   ref={dropdownRef}
-                  style={{ zIndex: 1000 }}
+                  style={{ 
+                    zIndex: 1000,
+                    display: isDropdownOpen ? 'block' : 'none',
+                    position: 'absolute',
+                    top: '100%',
+                    left: 0
+                  }}
                 >
                   <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
                   <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
@@ -187,18 +182,28 @@ const Header = () => {
                   </NavLink>
                 </li>
                 
-                <li className="nav-item dropdown">
+                {/* Собственная реализация мобильного выпадающего меню */}
+                <li className="nav-item dropdown" style={{ position: 'relative' }}>
                   <a 
                     className="nav-link dropdown-toggle" 
                     href="#" 
-                    role="button" 
-                    onClick={toggleDropdown}
-                    data-bs-toggle="dropdown" 
-                    aria-expanded="false"
+                    onClick={toggleMobileDropdown}
+                    ref={mobileDropdownToggleRef}
+                    aria-expanded={isMobileDropdownOpen}
                   >
                     Тарифный калькулятор
                   </a>
-                  <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
+                  {/* Используем состояние React для показа/скрытия меню */}
+                  <ul 
+                    className={`dropdown-menu ${isMobileDropdownOpen ? 'show' : ''}`} 
+                    ref={mobileDropdownRef}
+                    style={{ 
+                      zIndex: 1000,
+                      display: isMobileDropdownOpen ? 'block' : 'none',
+                      position: 'static',
+                      float: 'none'
+                    }}
+                  >
                     <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
                     <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                     <li><hr className="dropdown-divider" /></li>
