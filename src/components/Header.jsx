@@ -119,9 +119,7 @@ const Header = () => {
                     left: 0
                   }}
                 >
-                  <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                  <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
-                  <li><hr className="dropdown-divider" /></li>
+                  <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для компаний</Link></li>
                   <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                 </ul>
               </li>
@@ -204,9 +202,7 @@ const Header = () => {
                       float: 'none'
                     }}
                   >
-                    <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
-                    <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
+                    <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для компаний</Link></li>
                     <li><Link className="dropdown-item" to="/hourly" onClick={closeNav}>Почасовое потребление</Link></li>
                   </ul>
                 </li>

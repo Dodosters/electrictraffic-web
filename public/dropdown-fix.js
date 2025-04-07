@@ -15,6 +15,15 @@
       // Добавляем новый обработчик
       toggle.addEventListener('click', toggleDropdown);
     });
+    
+    // Дополнительно добавим обработчики для меню "Тарифный калькулятор"
+    var navLinks = document.querySelectorAll('a.nav-link');
+    navLinks.forEach(function(link) {
+      if (link.textContent.trim() === 'Тарифный калькулятор') {
+        link.removeEventListener('click', toggleDropdown);
+        link.addEventListener('click', toggleDropdown);
+      }
+    });
   }
 
   // Функция обработчик клика по dropdown-toggle
@@ -32,7 +41,10 @@
         var openToggle = openDropdown.querySelector('.dropdown-toggle');
         if (openToggle) openToggle.setAttribute('aria-expanded', 'false');
         var openMenu = openDropdown.querySelector('.dropdown-menu');
-        if (openMenu) openMenu.classList.remove('show');
+        if (openMenu) {
+          openMenu.classList.remove('show');
+          openMenu.style.display = 'none';
+        }
       }
     });
     
@@ -42,7 +54,10 @@
     
     // Показываем/скрываем dropdown menu
     var dropdownMenu = dropdown.querySelector('.dropdown-menu');
-    if (dropdownMenu) dropdownMenu.classList.toggle('show');
+    if (dropdownMenu) {
+      dropdownMenu.classList.toggle('show');
+      dropdownMenu.style.display = dropdownMenu.classList.contains('show') ? 'block' : 'none';
+    }
   }
 
   // Обработчик для закрытия dropdown при клике вне
@@ -63,7 +78,10 @@
         var toggle = dropdown.querySelector('.dropdown-toggle');
         if (toggle) toggle.setAttribute('aria-expanded', 'false');
         var menu = dropdown.querySelector('.dropdown-menu');
-        if (menu) menu.classList.remove('show');
+        if (menu) {
+          menu.classList.remove('show');
+          menu.style.display = 'none';
+        }
       });
     }
   }
@@ -78,7 +96,7 @@
 
   // Важно! Добавляем повторную инициализацию через интервал
   // для поддержки динамически добавленных компонентов в React
-  var initInterval = setInterval(initDropdowns, 2000);
+  var initInterval = setInterval(initDropdowns, 1000); // Уменьшаем интервал до 1 секунды
   
   // Останавливаем интервал после 30 секунд для экономии ресурсов
   setTimeout(function() {
@@ -95,7 +113,8 @@
           node.classList?.contains('dropdown') || 
           node.querySelector?.('.dropdown') ||
           node.classList?.contains('dropdown-toggle') || 
-          node.querySelector?.('.dropdown-toggle')
+          node.querySelector?.('.dropdown-toggle') ||
+          (node.textContent && node.textContent.includes('Тарифный калькулятор'))
         );
       });
     });
@@ -111,4 +130,10 @@
     childList: true,
     subtree: true
   });
+  
+  // Запускаем инициализацию немедленно
+  initDropdowns();
+  
+  // Дополнительный запуск через 300ms для более надежной работы с React
+  setTimeout(initDropdowns, 300);
 })();
