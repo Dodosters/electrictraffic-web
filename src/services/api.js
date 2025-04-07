@@ -1,7 +1,7 @@
 // ТНС-энерго API service connecting to the FastAPI backend
 
 // Base URL for the API
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'http://193.33.153.200';
 
 // API endpoints
 export const api = {

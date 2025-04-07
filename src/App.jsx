@@ -12,6 +12,7 @@ import NewsPage from './pages/NewsPage';
 import HourlyConsumptionPage from './pages/HourlyConsumptionPage';
 import AiAssistantPage from './pages/AiAssistantPage';
 import AdminPage from './pages/Admin/AdminPage';
+import BootstrapInitializer from './utils/BootstrapInitializer';
 import './App.css';
 import './styles/ButtonOverride.css';
 
@@ -19,6 +20,8 @@ function App() {
   return (
     <Router>
       <div className="app">
+        {/* Компонент для инициализации Bootstrap */}
+        <BootstrapInitializer />
         <Header />
         <main>
           <Routes>

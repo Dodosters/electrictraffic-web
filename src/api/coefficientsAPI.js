@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8000';
+const API_URL = 'http://193.33.153.200';
 
 // Helper function to ensure all numeric values are properly typed
 const formatCoefficientsData = (data) => {

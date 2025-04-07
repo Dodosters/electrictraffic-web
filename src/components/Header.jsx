@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import './Header.css';
 import './HeaderOverride.css'; // Добавляем стили с высоким приоритетом
@@ -6,7 +6,10 @@ import logo from '../assets/logo.png';
 
 const Header = () => {
   const [isNavExpanded, setIsNavExpanded] = useState(false);
-
+  // Ref для выпадающего меню
+  const dropdownRef = useRef(null);
+  const dropdownToggleRef = useRef(null);
+  
   const toggleNav = () => {
     setIsNavExpanded(!isNavExpanded);
   };
@@ -14,6 +17,66 @@ const Header = () => {
   const closeNav = () => {
     setIsNavExpanded(false);
   };
+  
+  // Функция для ручного управления выпадающим меню
+  const toggleDropdown = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (dropdownRef.current && dropdownToggleRef.current) {
+      const dropdownMenu = dropdownRef.current;
+      const dropdownToggle = dropdownToggleRef.current;
+      
+      const isOpen = dropdownMenu.classList.contains('show');
+      
+      if (isOpen) {
+        dropdownMenu.classList.remove('show');
+        dropdownToggle.setAttribute('aria-expanded', 'false');
+        dropdownToggle.parentElement.classList.remove('show');
+      } else {
+        dropdownMenu.classList.add('show');
+        dropdownToggle.setAttribute('aria-expanded', 'true');
+        dropdownToggle.parentElement.classList.add('show');
+      }
+    }
+  };
+  
+  // Закрытие выпадающего меню при клике вне его
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && 
+          dropdownToggleRef.current && 
+          !dropdownRef.current.contains(event.target) &&
+          !dropdownToggleRef.current.contains(event.target)) {
+        dropdownRef.current.classList.remove('show');
+        dropdownToggleRef.current.setAttribute('aria-expanded', 'false');
+        dropdownToggleRef.current.parentElement.classList.remove('show');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    
+    // Инициализация Bootstrap Dropdown
+    const initBootstrapDropdown = () => {
+      if (typeof window !== 'undefined' && window.bootstrap && dropdownToggleRef.current) {
+        try {
+          const dropdown = new window.bootstrap.Dropdown(dropdownToggleRef.current);
+          console.log('Bootstrap dropdown initialized');
+        } catch (error) {
+          console.error('Failed to initialize Bootstrap dropdown:', error);
+        }
+      }
+    };
+    
+    // Инициализируем при монтировании и с небольшой задержкой
+    initBootstrapDropdown();
+    const timer = setTimeout(initBootstrapDropdown, 500);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <header>
@@ -45,10 +108,22 @@ const Header = () => {
               </li>
             
               <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a 
+                  className="nav-link dropdown-toggle" 
+                  href="#" 
+                  role="button" 
+                  onClick={toggleDropdown}
+                  ref={dropdownToggleRef}
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                >
                   Тарифный калькулятор
                 </a>
-                <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
+                <ul 
+                  className="dropdown-menu" 
+                  ref={dropdownRef}
+                  style={{ zIndex: 1000 }}
+                >
                   <li><Link className="dropdown-item" to="/ur" onClick={closeNav}>Для Компаний</Link></li>
                   <li><Link className="dropdown-item" to="/fiz" onClick={closeNav}>Для Физических лиц</Link></li>
                   <li><hr className="dropdown-divider" /></li>
@@ -113,7 +188,14 @@ const Header = () => {
                 </li>
                 
                 <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <a 
+                    className="nav-link dropdown-toggle" 
+                    href="#" 
+                    role="button" 
+                    onClick={toggleDropdown}
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                  >
                     Тарифный калькулятор
                   </a>
                   <ul className="dropdown-menu" style={{ zIndex: 1000 }}>
