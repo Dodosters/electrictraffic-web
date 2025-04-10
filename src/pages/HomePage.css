@@ -77,6 +77,9 @@
   box-shadow: -5px 5px 10px #e3e3e3, 5px -5px 10px #fff;
   padding: 2em !important;
   transition: all 0.2s ease;
+  height: 180px; /* Fixed height for both cards */
+  display: flex;
+  flex-direction: column;
 }
 
 .calc-card:hover {
@@ -102,6 +105,9 @@
 .calc-card p {
   font-size: 1em;
   text-align: left !important;
+  flex-grow: 1; /* Takes up remaining space */
+  display: flex;
+  align-items: flex-start;
 }
 
 .ai-promo-card {

@@ -29,7 +29,7 @@ const HomePage = () => {
           </p>
 
           <div className="row justify-content-center gy-4">
-            <div className="col-md-4">
+            <div className="col-md-5">
               <Link to="/analytics" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
@@ -43,7 +43,7 @@ const HomePage = () => {
               </Link>
             </div>
             
-            <div className="col-md-4">
+            <div className="col-md-5">
               <Link to="/ur" className="calc-card d-block text-decoration-none p-4">
                 <div className="d-flex align-items-center mb-3">
                   <svg width="65" height="65" viewBox="0 0 24 24" className="me-3" style={{ opacity: '0.6' }}>
